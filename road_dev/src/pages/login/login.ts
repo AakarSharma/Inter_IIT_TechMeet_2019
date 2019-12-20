@@ -5,6 +5,7 @@ import { UserHomePage } from '../user-home/user-home';
 import { ContractorHomePage } from '../contractor-home/contractor-home';
 import { UserTabsPage } from '../user-tabs/user-tabs';
 import { UserTabsPageModule } from '../user-tabs/user-tabs.module';
+import { PotholeDetectionProvider } from '../../providers/pothole-detection/pothole-detection';
 
 
 /**
@@ -21,7 +22,7 @@ import { UserTabsPageModule } from '../user-tabs/user-tabs.module';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public pothole: PotholeDetectionProvider) {
   }
 
   ionViewDidLoad() {

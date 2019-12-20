@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
 
@@ -11,17 +10,14 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 @Injectable()
 export class PotholeDetectionProvider {
 
-  constructor(public http: HttpClient, private deviceMotion: DeviceMotion) {
+  constructor(private deviceMotion: DeviceMotion) {
     console.log('Hello PotholeDetectionProvider Provider');
-    // Get the device current acceleration
-    this.deviceMotion.getCurrentAcceleration().then(
-      (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
-      (error: any) => console.log(error)
-    );
-
     // Watch device acceleration
     var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
       console.log(acceleration);
+      if(acceleration.y > 5){
+        console.log("more than 5");
+      }
     });
   }
 
