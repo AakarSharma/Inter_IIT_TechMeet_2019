@@ -32,7 +32,7 @@ export class ContractorLoginPage {
 
   // login control goes hare
   login() {
-    this.fire.auth.signInWithEmailAndPassword(this.username.value + "@demo.com", this.password.value)
+    this.fire.auth.signInWithEmailAndPassword(this.username.value + "@contractor.com", this.password.value)
       .then(data => {
         this.navCtrl.setRoot(ContractorTabsPage);
       })

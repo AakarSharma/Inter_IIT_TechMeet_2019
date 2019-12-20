@@ -32,7 +32,7 @@ export class UserLoginPage {
 
   // login control goes hare
   login() {
-    this.fire.auth.signInWithEmailAndPassword(this.username.value + "@demo.com", this.password.value)
+    this.fire.auth.signInWithEmailAndPassword(this.username.value + "@user.com", this.password.value)
       .then(data => {
         this.navCtrl.setRoot(UserTabsPage);
       })
