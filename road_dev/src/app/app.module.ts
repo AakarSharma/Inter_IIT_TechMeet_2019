@@ -28,6 +28,11 @@ import { UserLoginPage } from '../pages/user-login/user-login';
 import { GovtTabsPage } from '../pages/govt-tabs/govt-tabs';
 import { GovtContractorsPage } from '../pages/govt-contractors/govt-contractors';
 import { GovtTendersPage } from '../pages/govt-tenders/govt-tenders';
+import { ContractorProfilePage } from '../pages/contractor-profile/contractor-profile';
+import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { GovtContractorsDetailsPage } from '../pages/govt-contractors-details/govt-contractors-details';
+import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tenders-details';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -57,7 +62,11 @@ export const firebaseConfig = {
     UserLoginPage,
     GovtTabsPage,
     GovtContractorsPage,
-    GovtTendersPage
+    GovtTendersPage,
+    ContractorProfilePage,
+    UserProfilePage,
+    GovtContractorsDetailsPage,
+    GovtTendersDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +94,11 @@ export const firebaseConfig = {
     UserLoginPage,
     GovtTabsPage,
     GovtContractorsPage,
-    GovtTendersPage
+    GovtTendersPage,
+    ContractorProfilePage,
+    UserProfilePage,
+    GovtContractorsDetailsPage,
+    GovtTendersDetailsPage
   ],
   providers: [
     StatusBar,
