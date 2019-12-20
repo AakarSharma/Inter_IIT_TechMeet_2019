@@ -1,3 +1,6 @@
+import { UserViewProjectsPage } from './../pages/user-view-projects/user-view-projects';
+import { ContractorTabsPage } from './../pages/contractor-tabs/contractor-tabs';
+import { SubmitReportPage } from './../pages/submit-report/submit-report';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -5,17 +8,16 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFireDatabaseModule } from 'angularfire2/database';
-// import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { LoginPage } from '../pages/login/login';
+import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { ContractorHomePage } from '../pages/contractor-home/contractor-home';
 
@@ -33,30 +35,36 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     LoginPage,
+    UserTabsPage,
     UserHomePage,
     ContractorHomePage,
     AboutPage,
     ContactPage,
-    HomePage,
-    TabsPage
+    ContractorHomePage,
+    SubmitReportPage,
+    ContractorTabsPage,
+    UserViewProjectsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    // AngularFireModule.initializeApp(firebaseConfig),  // app initilise with the firebase key
-    // AngularFireAuthModule,
-    // AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),  // app initilise with the firebase key
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
+    UserTabsPage,
     UserHomePage,
     ContractorHomePage,
     AboutPage,
     ContactPage,
-    HomePage,
-    TabsPage
+    ContractorHomePage,
+    SubmitReportPage,
+    ContractorTabsPage,
+    UserViewProjectsPage
   ],
   providers: [
     StatusBar,

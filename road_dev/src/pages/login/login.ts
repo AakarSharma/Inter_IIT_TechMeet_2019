@@ -1,7 +1,10 @@
+import { ContractorTabsPage } from './../contractor-tabs/contractor-tabs';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ContractorHomePage } from '../contractor-home/contractor-home';
 import { UserHomePage } from '../user-home/user-home';
+import { ContractorHomePage } from '../contractor-home/contractor-home';
+import { UserTabsPage } from '../user-tabs/user-tabs';
+import { UserTabsPageModule } from '../user-tabs/user-tabs.module';
 
 
 /**
@@ -26,11 +29,11 @@ export class LoginPage {
   }
 
   user() {
-    this.navCtrl.setRoot(UserHomePage);
+    this.navCtrl.setRoot(UserTabsPage);
   }
 
   contractor() {
-    this.navCtrl.setRoot(ContractorHomePage);
+    this.navCtrl.setRoot(ContractorTabsPage);
   }
 
 }
