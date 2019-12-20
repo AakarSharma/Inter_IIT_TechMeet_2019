@@ -1,6 +1,6 @@
+import { ContractorTabsPage } from './../contractor-tabs/contractor-tabs';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ContractorHomePage } from '../contractor-home/contractor-home';
 import { UserHomePage } from '../user-home/user-home';
 
 
@@ -30,7 +30,7 @@ export class LoginPage {
   }
 
   contractor() {
-    this.navCtrl.setRoot(ContractorHomePage);
+    this.navCtrl.setRoot(ContractorTabsPage);
   }
 
 }

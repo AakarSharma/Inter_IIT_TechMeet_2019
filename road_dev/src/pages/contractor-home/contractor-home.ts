@@ -10,6 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ContractorHomePage {
   present: boolean = true;
   contracts: any;
+  tab1Page : any = SubmitReportPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
