@@ -40,5 +40,4 @@ export class ContractorLoginPage {
         console.log('got an error .', error);
       }) 
   }
-
 }

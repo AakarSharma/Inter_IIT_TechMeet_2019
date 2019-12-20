@@ -25,6 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { GovtLoginPage } from '../pages/govt-login/govt-login';
 import { ContractorLoginPage } from '../pages/contractor-login/contractor-login';
 import { UserLoginPage } from '../pages/user-login/user-login';
+import { GovtTabsPage } from '../pages/govt-tabs/govt-tabs';
+import { GovtContractorsPage } from '../pages/govt-contractors/govt-contractors';
+import { GovtTendersPage } from '../pages/govt-tenders/govt-tenders';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -51,7 +54,10 @@ export const firebaseConfig = {
     UserViewProjectsPage,
     GovtLoginPage,
     ContractorLoginPage,
-    UserLoginPage
+    UserLoginPage,
+    GovtTabsPage,
+    GovtContractorsPage,
+    GovtTendersPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +81,10 @@ export const firebaseConfig = {
     UserViewProjectsPage,
     GovtLoginPage,
     ContractorLoginPage,
-    UserLoginPage
+    UserLoginPage,
+    GovtTabsPage,
+    GovtContractorsPage,
+    GovtTendersPage
   ],
   providers: [
     StatusBar,
