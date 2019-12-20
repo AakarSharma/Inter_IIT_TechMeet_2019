@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginPage } from '../login/login';
+import { GovtContractorsDetailsPage } from '../govt-contractors-details/govt-contractors-details';
 
 /**
  * Generated class for the GovtContractorsPage page.
@@ -36,25 +37,25 @@ export class GovtContractorsPage {
   }
 
   ionViewWillEnter(){
-    // const database = this.firedata.database;
-    // var temp_companies = [];
-    // database.ref('company/').once('value', function(snapshot) {
-    //   snapshot.forEach(function(child){
-    //     temp_companies.push({"name":child.child('details').child('name').val(),"code":child.key})
-    //   })
-    // })
-    // .then(()=>{
-    //   this.companies = temp_companies;
-    // });
+    const database = this.firedata.database;
+    var temp_contractors = [];
+    database.ref('contractor/').once('value', function(snapshot) {
+      snapshot.forEach(function(child){
+        temp_contractors.push({"name":child.child('profile').child('name').val(),"code":child.key})
+      })
+    })
+    .then(()=>{
+      this.contractors = temp_contractors;
+    });
   }
   
   
   createContractor(){
-  //   const animationsOptions = {
-  //     animation: 'md-transition',
-  //     duration: 1000
-  //   }
-  //   this.navCtrl.push(CreateCompanyPage, {}, animationsOptions);
+    // const animationsOptions = {
+    //   animation: 'md-transition',
+    //   duration: 1000
+    // }
+    // this.navCtrl.push(CreateCompanyPage, {}, animationsOptions);
   }
 
   deleteContractor(index) {
@@ -102,11 +103,11 @@ export class GovtContractorsPage {
   }
 
   showContractor(index) {
-  //   const animationsOptions = {
-  //     animation: 'ios-transition',
-  //     duration: 1000
-  //   }
-  //   this.navCtrl.push(EditCompanyPage,{"id":this.companies[index].code}, animationsOptions);
+    const animationsOptions = {
+      animation: 'ios-transition',
+      duration: 1000
+    }
+    this.navCtrl.push(GovtContractorsDetailsPage,{"id":this.contractors[index].code}, animationsOptions);
   }
 
   logout(){

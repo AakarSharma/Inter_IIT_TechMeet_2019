@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Item, ItemSliding, App, AlertContr
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GovtTendersDetailsPage } from '../govt-tenders-details/govt-tenders-details';
 
 /**
  * Generated class for the GovtTendersPage page.
@@ -35,16 +36,16 @@ export class GovtTendersPage {
   }
   
   ionViewWillEnter(){
-    // const database = this.firedata.database;
-    // var temp_companies = [];
-    // database.ref('company/').once('value', function(snapshot) {
-    //   snapshot.forEach(function(child){
-    //     temp_companies.push({"name":child.child('details').child('name').val(),"code":child.key})
-    //   })
-    // })
-    // .then(()=>{
-    //   this.companies = temp_companies;
-    // });
+    const database = this.firedata.database;
+    var temp_tenders = [];
+    database.ref('tender/').once('value', function(snapshot) {
+      snapshot.forEach(function(child){
+        temp_tenders.push({"name":child.child('roadname').val(),"code":child.key})
+      })
+    })
+    .then(()=>{
+      this.tenders = temp_tenders;
+    });
   }
   
   
@@ -101,11 +102,11 @@ export class GovtTendersPage {
   }
 
   showTender(index) {
-  //   const animationsOptions = {
-  //     animation: 'ios-transition',
-  //     duration: 1000
-  //   }
-  //   this.navCtrl.push(EditCompanyPage,{"id":this.companies[index].code}, animationsOptions);
+    const animationsOptions = {
+      animation: 'ios-transition',
+      duration: 1000
+    }
+    this.navCtrl.push(GovtTendersDetailsPage,{"id":this.tenders[index].code}, animationsOptions);
   }
 
 }
