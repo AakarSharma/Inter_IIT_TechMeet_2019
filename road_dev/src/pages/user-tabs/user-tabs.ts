@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { UserHomePage } from '../user-home/user-home';
+import { UserProfilePage } from '../user-profile/user-profile'
 
 /**
  * Generated class for the UserTabsPage page.
@@ -21,7 +22,7 @@ import { UserHomePage } from '../user-home/user-home';
 export class UserTabsPage {
 
   tab1Root = UserHomePage;
-  tab2Root = AboutPage;
+  tab2Root = UserProfilePage;
   tab3Root = UserViewProjectsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

@@ -1,5 +1,6 @@
 import { ContractorHomePage } from './../contractor-home/contractor-home';
 import { Component } from '@angular/core';
+import { ContractorProfilePage } from './../contractor-profile/contractor-profile';
 
 import { ContactPage } from '../contact/contact';
 
@@ -10,7 +11,7 @@ export class ContractorTabsPage {
 
   tab1Root = ContractorHomePage;
   tab2Root = ContractorHomePage;
-  tab3Root = ContactPage;
+  tab3Root = ContractorProfilePage;
 
   constructor() {
 
