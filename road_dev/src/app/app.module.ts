@@ -14,7 +14,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -95,7 +95,7 @@ export const firebaseConfig = {
     SubmitReportPage,
     ContractorTabsPage,
     UserViewProjectsPage,
-    // MaintenanceQueryPage,
+    MaintenanceQueryPage,
     MaintenanceReqPage,
     GovtLoginPage,
     ContractorLoginPage,
@@ -115,7 +115,8 @@ export const firebaseConfig = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Geolocation,
     Camera,
-    AlertController
+    AlertController,
+    NativeGeocoder
   ]
 })
 export class AppModule { }
