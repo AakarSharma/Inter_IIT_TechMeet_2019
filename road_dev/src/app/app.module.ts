@@ -22,6 +22,9 @@ import { UserHomePage } from '../pages/user-home/user-home';
 import { ContractorHomePage } from '../pages/contractor-home/contractor-home';
 import { PotholeDetectionProvider } from '../providers/pothole-detection/pothole-detection';
 import { HttpClientModule } from '@angular/common/http';
+import { GovtLoginPage } from '../pages/govt-login/govt-login';
+import { ContractorLoginPage } from '../pages/contractor-login/contractor-login';
+import { UserLoginPage } from '../pages/user-login/user-login';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -45,7 +48,10 @@ export const firebaseConfig = {
     ContractorHomePage,
     SubmitReportPage,
     ContractorTabsPage,
-    UserViewProjectsPage
+    UserViewProjectsPage,
+    GovtLoginPage,
+    ContractorLoginPage,
+    UserLoginPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,10 @@ export const firebaseConfig = {
     ContractorHomePage,
     SubmitReportPage,
     ContractorTabsPage,
-    UserViewProjectsPage
+    UserViewProjectsPage,
+    GovtLoginPage,
+    ContractorLoginPage,
+    UserLoginPage
   ],
   providers: [
     StatusBar,
