@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { ContractorTabsPage } from '../contractor-tabs/contractor-tabs';
 
@@ -32,7 +32,7 @@ export class ContractorLoginPage {
 
   // login control goes hare
   login() {
-    this.fire.auth.signInWithEmailAndPassword(this.username.value + "@demo.com", this.password.value)
+    this.fire.auth.signInWithEmailAndPassword(this.username.value + "@contractor.com", this.password.value)
       .then(data => {
         this.navCtrl.setRoot(ContractorTabsPage);
       })
