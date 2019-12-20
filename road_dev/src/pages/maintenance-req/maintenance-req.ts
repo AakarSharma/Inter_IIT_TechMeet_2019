@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController } from 'ionic-angular';
-import {AngularFireStorage, AngularFireUploadTask} from "angularfire2/storage";
+import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";
 
 @IonicPage()
 @Component({
@@ -22,6 +22,7 @@ export class MaintenanceReqPage {
   image:string;
   road:string = "";
   area: string = "";
+  date: string = "";
   severity: number = 1;
   constructor(public storage:AngularFireStorage,
               public alertCtrl: AlertController, 
@@ -73,7 +74,7 @@ export class MaintenanceReqPage {
 
   async sendDataToFirebase(){
     this.getLocation().then(()=>{
-      // 
+      this.date = (new Date()).toDateString();
       // 
       // 
       // 

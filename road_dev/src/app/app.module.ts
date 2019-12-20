@@ -1,7 +1,7 @@
 import { AlertController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera/ngx';
 import { MaintenanceReqPage } from './../pages/maintenance-req/maintenance-req';
-// import { MaintenanceQueryPage } from './../pages/maintenance-query/maintenance-query';
+import { MaintenanceQueryPage } from './../pages/maintenance-query/maintenance-query';
 import { UserViewProjectsPage } from './../pages/user-view-projects/user-view-projects';
 import { ContractorTabsPage } from './../pages/contractor-tabs/contractor-tabs';
 import { SubmitReportPage } from './../pages/submit-report/submit-report';
@@ -18,7 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {AngularFireStorageModule} from 'angularfire2/storage';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 import { LoginPage } from '../pages/login/login';
 import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
@@ -61,7 +61,7 @@ export const firebaseConfig = {
     ContractorTabsPage,
     UserViewProjectsPage,
     MaintenanceReqPage,
-    // MaintenanceQueryPage,
+    MaintenanceQueryPage,
     GovtLoginPage,
     ContractorLoginPage,
     UserLoginPage,
