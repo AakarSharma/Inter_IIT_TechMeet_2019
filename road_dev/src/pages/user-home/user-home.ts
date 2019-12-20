@@ -1,6 +1,6 @@
+import { MaintenanceReqPage } from './../maintenance-req/maintenance-req';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**
  * Generated class for the UserHomePage page.
  *
@@ -20,6 +20,10 @@ export class UserHomePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserHomePage');
+  }
+
+  navToMaintenanceReq(){
+    this.navCtrl.push(MaintenanceReqPage);
   }
 
 }

@@ -1,3 +1,7 @@
+import { AlertController } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera/ngx';
+import { MaintenanceReqPage } from './../pages/maintenance-req/maintenance-req';
+// import { MaintenanceQueryPage } from './../pages/maintenance-query/maintenance-query';
 import { UserViewProjectsPage } from './../pages/user-view-projects/user-view-projects';
 import { ContractorTabsPage } from './../pages/contractor-tabs/contractor-tabs';
 import { SubmitReportPage } from './../pages/submit-report/submit-report';
@@ -5,17 +9,16 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import {AngularFireStorageModule} from 'angularfire2/storage';
 import { LoginPage } from '../pages/login/login';
 import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
@@ -57,6 +60,8 @@ export const firebaseConfig = {
     SubmitReportPage,
     ContractorTabsPage,
     UserViewProjectsPage,
+    MaintenanceReqPage,
+    // MaintenanceQueryPage,
     GovtLoginPage,
     ContractorLoginPage,
     UserLoginPage,
@@ -74,6 +79,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),  // app initilise with the firebase key
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     HttpClientModule,
   ],
   bootstrap: [IonicApp],
@@ -89,6 +95,8 @@ export const firebaseConfig = {
     SubmitReportPage,
     ContractorTabsPage,
     UserViewProjectsPage,
+    // MaintenanceQueryPage,
+    MaintenanceReqPage,
     GovtLoginPage,
     ContractorLoginPage,
     UserLoginPage,
@@ -104,9 +112,10 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     { provide: PotholeDetectionProvider, useClass: HttpClientModule },
-    // PotholeDetectionProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    
+    Geolocation,
+    Camera,
+    AlertController
   ]
 })
 export class AppModule { }
