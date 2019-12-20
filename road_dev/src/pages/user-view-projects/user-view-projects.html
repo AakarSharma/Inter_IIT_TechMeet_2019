@@ -1,0 +1,32 @@
+<!--
+  Generated template for the UserViewProjectsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>UserViewProjects</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-segment>
+    <ion-segment-button (ionSelect)="pastProjects()">
+      Past Projects
+    </ion-segment-button>
+    <ion-segment-button (ionSelect)="presentProjects()">
+      Present Projects
+    </ion-segment-button>
+    <ion-segment-button (ionSelect)="upcomingProjects()">
+      Upcoming Projects      
+    </ion-segment-button>
+  </ion-segment>
+  <ion-card *ngFor="let data of projects">
+    <ion-card-header>
+      Road Name
+    </ion-card-header>
+    <ion-card-content>
+      Some Info.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
