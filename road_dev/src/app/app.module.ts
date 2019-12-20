@@ -21,6 +21,7 @@ import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { ContractorHomePage } from '../pages/contractor-home/contractor-home';
 import { PotholeDetectionProvider } from '../providers/pothole-detection/pothole-detection';
+import { HttpClientModule } from '@angular/common/http';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -51,7 +52,7 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),  // app initilise with the firebase key
     AngularFireAuthModule,
-    AngularFireDatabaseModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,8 +71,10 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: PotholeDetectionProvider, useClass: HttpClientModule },
+    // PotholeDetectionProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    PotholeDetectionProvider
+    
   ]
 })
 export class AppModule { }

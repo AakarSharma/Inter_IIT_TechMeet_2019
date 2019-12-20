@@ -27,7 +27,6 @@
     "@ionic/storage": "2.2.0",
     "cordova-android": "8.1.0",
     "cordova-plugin-device-motion": "^2.0.1",
-    "cordova-plugin-firebase": "^2.0.5",
     "firebase": "^7.6.1",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",
@@ -49,7 +48,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-firebase": {},
       "cordova-plugin-device-motion": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},

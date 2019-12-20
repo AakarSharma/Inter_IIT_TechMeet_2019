@@ -13,12 +13,14 @@ export class PotholeDetectionProvider {
   constructor(private deviceMotion: DeviceMotion) {
     console.log('Hello PotholeDetectionProvider Provider');
     // Watch device acceleration
-    var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-      console.log(acceleration);
-      if(acceleration.y > 5){
-        console.log("more than 5");
-      }
-    });
+    if (document.URL.startsWith("http")) {
+      var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
+        console.log(acceleration);
+        if (acceleration.y > 5) {
+          console.log("more than 5");
+        }
+      });
+    }
   }
 
 }
