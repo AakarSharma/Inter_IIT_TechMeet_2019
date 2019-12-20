@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class="ion-text-center">
+      Contractor Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-segment>
+    <ion-segment-button checked (ionSelect)="showPastContracts()">
+      Past Contracts
+    </ion-segment-button>
+    <ion-segment-button (ionSelect)="showPresentContracts()">
+      Present Contracts
+    </ion-segment-button>
+  </ion-segment>
+  <ion-card *ngFor="let data of contracts" color="light">
+    <ion-card-header>
+      Address/Road Name
+    </ion-card-header>
+    <ion-card-content>
+      <button ion-button style="float: right;" color="dark" round *ngIf="present" (click)="navToSubmitReport()">Nav to filling report</button>
+    </ion-card-content>    
+  </ion-card>
+</ion-content>
