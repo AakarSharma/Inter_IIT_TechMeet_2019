@@ -20,6 +20,7 @@ import { LoginPage } from '../pages/login/login';
 import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { ContractorHomePage } from '../pages/contractor-home/contractor-home';
+import { PotholeDetectionProvider } from '../providers/pothole-detection/pothole-detection';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -69,7 +70,8 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    PotholeDetectionProvider
   ]
 })
 export class AppModule { }
