@@ -31,11 +31,14 @@ export class SubmitReportPage {
 		job5: ''
   };
 
+  tenderId: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.tenderId = navParams.get("id");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubmitReportPage');
+    console.log("Id of tender is "+this.tenderId);
   }
 
   submit(){
