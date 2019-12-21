@@ -28,6 +28,9 @@ export class ContractorLoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContractorLoginPage');
+    this.username.value = "demo";
+    this.password.value = "password";
+    this.login();
   }
 
   // login control goes hare

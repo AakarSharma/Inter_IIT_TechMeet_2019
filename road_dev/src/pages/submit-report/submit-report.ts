@@ -32,8 +32,16 @@ export class SubmitReportPage {
   };
 
   tenderId: any;
+  roadLength: number;
+  job1: any = { lower: 33, upper: 60 };
+  job2: any = { lower: 33, upper: 60 };
+  job3: any = { lower: 33, upper: 60 };
+  job4: any = { lower: 33, upper: 60 };
+  job5: any = { lower: 33, upper: 60 };
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tenderId = navParams.get("id");
+    this.roadLength = 13;
   }
 
   ionViewDidLoad() {

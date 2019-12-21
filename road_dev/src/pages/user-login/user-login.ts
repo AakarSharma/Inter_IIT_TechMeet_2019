@@ -28,7 +28,9 @@ export class UserLoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLoginPage');
-    this.navCtrl.setRoot(UserTabsPage);
+    this.username.value = "demo";
+    this.password.value = "password";
+    this.login();
   }
 
   // login control goes hare
