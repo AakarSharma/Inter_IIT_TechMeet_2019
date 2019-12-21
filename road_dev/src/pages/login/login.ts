@@ -6,7 +6,6 @@ import { ContractorHomePage } from '../contractor-home/contractor-home';
 import { GovtLoginPage } from '../govt-login/govt-login';
 import { UserTabsPage } from '../user-tabs/user-tabs';
 import { UserTabsPageModule } from '../user-tabs/user-tabs.module';
-import { PotholeDetectionProvider } from '../../providers/pothole-detection/pothole-detection';
 import { ContractorLoginPage } from '../contractor-login/contractor-login';
 import { UserLoginPage } from '../user-login/user-login';
 
@@ -26,7 +25,7 @@ import { UserLoginPage } from '../user-login/user-login';
 export class LoginPage {
 
   public backgroundImage = 'assets/imgs/background-7.jpg';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public pothole: PotholeDetectionProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
