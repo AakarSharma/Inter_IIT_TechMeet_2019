@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component ,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the UserViewProjectsPage page.
@@ -15,25 +18,74 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UserViewProjectsPage {
 
+  loading = this.loadingCtrl.create({
+    content: 'Fetching Data......',
+    spinner:'bubbles'
+  	});
+  selected: string = "present";
   contents: any = "Present";
   projects: any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  pastP: any = [];
+  presentP: any = [];
+  futureP: any = [];
+  tenders: any = [];
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              // public http: HttpClient, 
+              private fireauth: AngularFireAuth,
+              private firedata: AngularFireDatabase ,
+              public zone:NgZone,
+              public loadingCtrl: LoadingController
+              ) {
   }
 
+  async ionViewWillEnter(){
+    this.projects = this.presentP;
+    this.loading.present();
+    const database = this.firedata.database;
+    var temp_tenders;
+    await database.ref('tender/').once('value', function(snapshot) {
+        temp_tenders = snapshot.val();
+    })
+    .then(()=>{
+      temp_tenders.forEach(element => {
+        if(element["status"]==0){
+          this.futureP.push(element);
+        } else if(element["status"]==1){
+          this.presentP.push(element);
+        } else {
+          this.pastP.push(element);
+        }
+      });
+    }).then(()=>{
+      if(this.loading)
+        this.loading.dismiss();
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserViewProjectsPage');
   }
 
   pastProjects(){
-    this.contents = "Past";
+    this.zone.run(()=>{
+      this.projects = this.pastP;
+    });
   }
 
   presentProjects(){
-    this.contents = "Present";
+    this.zone.run(()=>{
+      this.projects = this.presentP;
+    });
   }
 
   upcomingProjects(){
-    this.contents = "Upcoming";
+    this.zone.run(()=>{
+      this.projects = this.futureP;
+    });
+  }
+
+  showProgress(){
+
   }
 }
 
