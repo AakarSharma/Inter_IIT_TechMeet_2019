@@ -64,7 +64,8 @@ export class GovtViewProjectsPage {
         temp_tenders = snapshot.val();
     })
     .then(()=>{
-      console.log(temp_tenders)
+      console.log(temp_tenders);
+      if(temp_tenders!=undefined && temp_tenders!=null){
       Object.keys(temp_tenders).forEach(key => {
         console.log(key)
         var tender_id = key;
@@ -79,6 +80,7 @@ export class GovtViewProjectsPage {
           this.futureP.push(temp_tenders[key]);
         }
       });
+    }
     }).then(()=>{
       if(this.loading)
         this.loading.dismiss();
