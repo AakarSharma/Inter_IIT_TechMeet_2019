@@ -6,11 +6,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-segment color="danger">
-    <ion-segment-button checked (ionSelect)="showPastContracts()">
+  <ion-segment color="danger" [(ngModel)]="tense">
+    <ion-segment-button checked value="past" (ionSelect)="showPastContracts()">
       Past Contracts
     </ion-segment-button>
-    <ion-segment-button (ionSelect)="showPresentContracts()">
+    <ion-segment-button value = "present" (ionSelect)="showPresentContracts()">
       Present Contracts
     </ion-segment-button>
   </ion-segment>
@@ -30,7 +30,7 @@
         <ion-label>Predicted Completion Date: {{data.predicteddate}}</ion-label>
       </ion-item>
       <ion-item>
-        <button ion-button>Progress</button>
+        <button ion-button *ngIf="tense=='present'" (click)="navToSubmitReport()"> Submit Report</button>
       </ion-item>
     </ion-card-content>
   </ion-card>
