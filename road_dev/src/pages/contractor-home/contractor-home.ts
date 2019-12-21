@@ -17,6 +17,7 @@ export class ContractorHomePage {
   presentP: any=[];
   projects:any = [];
   selected: string = "present";
+  tense: string = "present";
   tab1Page : any = SubmitReportPage;
   loading = this.loadingCtrl.create({
     content: 'Fetching Data......',
@@ -34,6 +35,7 @@ export class ContractorHomePage {
     this.contracts=["Hello","World"];
     this.selected = "present";
     this.projects = [];
+    this.tense = "present";
     this.pastP = [];
     this.presentP = [];
     this.loading = this.loadingCtrl.create({
@@ -44,7 +46,7 @@ export class ContractorHomePage {
     this.loading.present();
     const database = this.firedata.database;
     var temp_tenders;
-    const auth = this.fireauth.auth;
+    const auth = this.fireauth.auth;  
 		var temp = auth.currentUser;
 		var temp_email = temp.email;
 		let contractor = temp_email.split("@")[0];
