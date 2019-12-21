@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>MaintenanceReq</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>
+      Road Name: (Optional)
+    </ion-label>
+    <ion-input [(ngModel)] = "road">
+
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      Area: (Optional)
+    </ion-label>
+    <ion-textarea [(ngModel)] = "area">
+      
+    </ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label>Severity</ion-label>
+    <ion-select [(ngModel)]="severity">
+      <ion-option value="1">1</ion-option>
+      <ion-option value="2">2</ion-option>
+      <ion-option value="3">3</ion-option>
+      <ion-option value="4">4</ion-option>
+      <ion-option value="5">5</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-footer>
+    <ion-toolbar clear>
+      <button ion-button full (click)="uploadHandler()" item-start>Click Image&nbsp;&nbsp;<ion-icon class="footer-btn" name="images"></ion-icon></button>
+    </ion-toolbar>
+  </ion-footer>
+  </ion-content>
