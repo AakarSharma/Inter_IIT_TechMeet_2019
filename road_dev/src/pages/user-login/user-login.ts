@@ -28,6 +28,7 @@ export class UserLoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLoginPage');
+    this.navCtrl.setRoot(UserTabsPage);
   }
 
   // login control goes hare
