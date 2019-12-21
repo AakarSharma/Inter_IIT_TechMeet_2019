@@ -1,0 +1,7 @@
+{
+  "name": "pothole",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
