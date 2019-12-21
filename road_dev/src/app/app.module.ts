@@ -40,6 +40,7 @@ import { CreateContractorPage } from '../pages/create-contractor/create-contract
 import { CreateTenderPage } from '../pages/create-tender/create-tender'
 import { GovtVerifyPage } from '../pages/govt-verify/govt-verify'
 import { GovtPendingPage } from '../pages/govt-pending/govt-pending'
+import { UserReportPage } from '../pages/user-report/user-report'
 import { PotholeDetectorProvider } from '../providers/pothole-detector/pothole-detector';
 import { DeviceMotion } from '@ionic-native/device-motion';
 import { Gyroscope} from '@ionic-native/gyroscope';
@@ -85,6 +86,7 @@ export const firebaseConfig = {
     GovtPendingPage,
     GovtViewProjectsPage,
     ContractorViewMaintenancePage,
+    UserReportPage,
     GovtTenderAllotPage
   ],
   imports: [
@@ -127,6 +129,7 @@ export const firebaseConfig = {
     GovtPendingPage,
     GovtViewProjectsPage,
     ContractorViewMaintenancePage,
+    UserReportPage,
     GovtTenderAllotPage
   ],
   providers: [

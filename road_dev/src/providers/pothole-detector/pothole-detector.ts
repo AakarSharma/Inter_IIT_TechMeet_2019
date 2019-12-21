@@ -4,7 +4,9 @@ import { Platform } from 'ionic-angular';
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { Observable, zip } from 'rxjs';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
 export class PotholeDetectorProvider {
@@ -12,26 +14,76 @@ export class PotholeDetectorProvider {
   lng: any;
   loc: boolean;
 
-  constructor(public geo: Geolocation, private nativeGeocoder:NativeGeocoder, private gyroscope: Gyroscope, private deviceMotion: DeviceMotion, private platform: Platform) {
+  constructor(private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public geo: Geolocation, private nativeGeocoder: NativeGeocoder, private gyroscope: Gyroscope, private deviceMotion: DeviceMotion, private platform: Platform) {
   }
 
   async getLocation() {
-    await this.geo.getCurrentPosition().then((location) => {
+    await this.geo.getCurrentPosition().then((location)=>{
       this.lat = location.coords.latitude;
       this.lng = location.coords.longitude;
-    }).then(() => {
       this.loc = true;
     });
   }
 
-  savePothole(lat, lon){
-    // update in database
+  toRadian(p) {
+    return p * Math.PI / 180;
+  }
+
+  calculateDistance(latC, lngC) {
+    var R = 6371000;
+    var p1 = this.toRadian(this.lat);
+    var p2 = this.toRadian(latC);
+    var q1 = this.toRadian(latC - this.lat);
+    var q2 = this.toRadian(lngC - this.lng);
+
+    var a = Math.sin(q1 / 2) * Math.sin(q1 / 2) + Math.cos(p1) * Math.cos(p2) * Math.sin(q2 / 2) * Math.sin(q2 / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  async savePothole() {
+    const database = this.firedata.database;
+    let allpotholes;
+    await database.ref('affected_areas/247667/').once('value', function (snapshot) {
+      allpotholes = snapshot.val();
+    });
+
+    let closePotholes = [];
+
+    let tlat, tlan, tconfidence;
+    for (let key in allpotholes) {
+      tlat = allpotholes[key]["lan"];
+      tlan = allpotholes[key]["lon"];
+      if (this.calculateDistance(tlan, tlat) < 10) {
+        closePotholes.push({ key: allpotholes[key] });
+      }
+    }
+
+    let flat = this.lat, flan = this.lng, fconfidence = 1, fseverity = 0;
+    for (let key in closePotholes) {
+      await database.ref('affected_areas/247667/').child(key).remove();
+      flat += closePotholes[key]["lan"];
+      flan += closePotholes[key]["lon"];
+      fconfidence += Math.floor(closePotholes[key]["confidence"]/closePotholes.length);
+      fseverity = Math.max(closePotholes[key]["severity"], fseverity);
+    }
+
+    await database.ref('affected_areas/').child("247667").push({
+      "lan": flat,
+      "lon": flan,
+      "has_photo": false,
+      "confidence": Math.max(fconfidence, 100),
+      "photo": "as",
+      "roadname": "unknown",
+      "user": "demo",
+      "severity": fseverity
+    });
   }
 
   detect() {
     this.platform.ready().then(() => {
       let options = {
-        frequency: 500
+        frequency: 1000
       }
       Observable.create()
       let sensors = zip(
@@ -41,7 +93,7 @@ export class PotholeDetectorProvider {
 
       let sensorsDataPack = [];
 
-      sensors.subscribe((sensorsData) => {
+      sensors.subscribe(async (sensorsData) => {
         if (sensorsDataPack.length < 20) {
           if (sensorsData[0] && sensorsData[1]) {
             sensorsDataPack.push({ acceleration: sensorsData[0], gyroscope: sensorsData[1] });
@@ -50,18 +102,20 @@ export class PotholeDetectorProvider {
           sensorsDataPack.shift();
           sensorsDataPack.push({ acceleration: sensorsData[0], gyroscope: sensorsData[1] });
           if (this.checkIsPotHole(sensorsDataPack)) {
-            this.getLocation().then(() => {
-                this.savePothole(this.lat, this.lng);
+            await this.getLocation().then(async (val) => {
+              await this.savePothole().then((v)=>{
+                sensorsDataPack = sensorsDataPack.slice(3);
+              });
             });
-            console.log("PotHole");
-            sensorsDataPack = sensorsDataPack.slice(3);
           }
         }
       });
+    }).catch((error) => {
+      console.log("Use on Phone");
     });
   }
 
-  diff(a){
+  diff(a) {
     return Math.max(...a) - Math.min(...a)
   }
 

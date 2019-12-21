@@ -20,14 +20,13 @@ declare var L;
   templateUrl: 'user-home.html',
 })
 export class UserHomePage {
-  @ViewChild('map') mapElement: ElementRef;
   lat: any;
   lng: any;
   loc: boolean;
   map: any;
   potholes: any;
 
-  constructor(private potholeDetectorProvider:PotholeDetectorProvider, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
+  constructor(private potholeDetectorProvider: PotholeDetectorProvider, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
     this.potholes = [];
     this.potholeDetectorProvider.detect();
   }
@@ -41,24 +40,26 @@ export class UserHomePage {
     });
   }
 
-  ionViewDidLoad() {
-    this.getLocation().then(() => {
-      this.map = L.map('map').setView([this.lat, this.lng], 13);
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjR2bWhrMGkwcTNkbnBja2loZ3B3dSJ9.gd49oQODGO07vZkGOOsmog', {
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        accessToken: 'pk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjRydnhyMGh5YzNqbnBuZTJvNjF4eiJ9.4p6cRrpJT8C6ypZAbZD8yA'
-      }).addTo(this.map);
-      L.marker([this.lat, this.lng]).addTo(this.map);
-      this.printPotholes();
-    });
+  async ionViewDidLoad() {
+    if(!this.map){
+      await this.getLocation().then(()=>{
+        this.map = L.map('map').setView([this.lat, this.lng], 13);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjR2bWhrMGkwcTNkbnBja2loZ3B3dSJ9.gd49oQODGO07vZkGOOsmog', {
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          accessToken: 'pk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjRydnhyMGh5YzNqbnBuZTJvNjF4eiJ9.4p6cRrpJT8C6ypZAbZD8yA'
+        }).addTo(this.map);
+        L.marker([this.lat, this.lng]).addTo(this.map);
+        this.printPotholes();
+      });
+    }
   }
 
   printPotholes() {
     const database = this.firedata.database;
     const auth = this.fireauth.auth;
     let lol;
-    database.ref('affected_areas/').child("201001").once('value').then(function (snapshot) {
+    database.ref('affected_areas/').child("247667").once('value').then(function (snapshot) {
       lol = snapshot.val();
     }).then(() => {
       this.potholes = lol;
@@ -67,7 +68,7 @@ export class UserHomePage {
           var circle = L.circle([pothole["lan"], pothole["lon"]], {
             color: 'transparent',
             fillColor: '#f03',
-            fillOpacity: 0.01*pothole["confidence"],
+            fillOpacity: 0.01 * pothole["confidence"],
             radius: 5
           }).addTo(this.map);
         }

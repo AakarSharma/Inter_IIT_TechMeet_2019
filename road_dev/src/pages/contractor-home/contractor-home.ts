@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ContractorProgressPage } from '../contractor-progress/contractor-progress'
 
 @IonicPage()
 @Component({
@@ -88,4 +89,9 @@ export class ContractorHomePage {
   navToSubmitReport(id){
     this.navCtrl.push(SubmitReportPage,{"id":id});
   }
+
+  showProgress(id){
+    this.navCtrl.push(ContractorProgressPage,{"id":id});
+  }
+
 }

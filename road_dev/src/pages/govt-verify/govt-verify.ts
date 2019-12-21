@@ -32,8 +32,15 @@ export class GovtVerifyPage {
   };
 
   tenderId: any;
+  roadLength: number;
+  job1: any = { lower: 0, upper: 0 };
+  job2: any = { lower: 0, upper: 0 };
+  job3: any = { lower: 0, upper: 0 };
+  job4: any = { lower: 0, upper: 0 };
+  job5: any = { lower: 0, upper: 0 };
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tenderId = navParams.get("id");
+    this.roadLength = 13;
   }
 
   ionViewDidLoad() {
