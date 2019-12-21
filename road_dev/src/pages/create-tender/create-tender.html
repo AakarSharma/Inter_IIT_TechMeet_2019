@@ -5,11 +5,54 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>createTender</ion-title>
+  
+  <ion-navbar color="primary">
+    <ion-title>Create Tender</ion-title>
   </ion-navbar>
+  
 </ion-header>
 
-<ion-content padding>
 
+<ion-content>
+  
+  <div padding id="cloud-layer">
+    
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="assets/imgs/company4.png" />
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-list inset no-lines>
+          
+          <ion-item>
+            <ion-input type="text" placeholder="Road Name" #name></ion-input>
+          </ion-item>
+          <label></label>
+          <ion-item>
+            <ion-input type="number" #email placeholder="Road Length"></ion-input>
+          </ion-item>
+          <label></label>
+          <ion-item>
+            <ion-input type="date" #password1 placeholder="Start Date"></ion-input>
+          </ion-item>
+          <label></label>
+          <ion-item>
+            <ion-input type="date" #password2 placeholder="Expected End Date"></ion-input>
+          </ion-item>
+          
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <button ion-button class="create-button" (click)="createTender()">Create</button>
+      </ion-col>
+    </ion-row>
+    
+  </div>
+  
 </ion-content>
