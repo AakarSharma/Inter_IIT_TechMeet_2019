@@ -12,7 +12,7 @@ import { LoadingController } from 'ionic-angular';
 export class MaintenanceQueryPage {
 
   queries: any = [];
-  address: any;
+  address: any;;
   contractor: any = [];
   loading: any;
   selectedContractor: string = null;
@@ -81,9 +81,10 @@ export class MaintenanceQueryPage {
     console.log('ionViewDidLoad MaintenanceQueryPage');
   }
 
-  async authenticate(user,year,day,q){
+  async authenticate(user,year,day,q,date,lan,lon,photo,pincode,roadname,severity){
     const database = this.firedata.database; 
     let rating;
+    var d = new Date().toDateString();
     await database.ref('user/').child(user).child('profile').child('rating').once('value',function(snap){
       rating = snap.val();
     }).then(async function(){
@@ -91,11 +92,29 @@ export class MaintenanceQueryPage {
         // Increase rating of user
 
         //Assign task to contractor
-        
+        await database.ref('maintenance').child(this.selectedContractor).child(year).child(day).set({
+          "assignDate":d,
+          "date":date,
+          "lan":lan,
+          "lon":lon,
+          "photo":photo,
+          "pincode":pincode,
+          "roadname":roadname,
+          "severity": severity
+        });
         await database.ref('user/').child(user).child('profile').child('rating').set(rating+1);
       } else {
         //Decrease Rating of User
         await database.ref('user/').child(user).child('profile').child('rating').set(rating-1);
+      }
+      await database.ref('affected_areas/').child(year).child(day).set(null);
+      var i = 0;
+      for(let xyz of this.queries){
+        if(xyz[year]==year && xyz[day]==day)
+        {
+          this.queries.splice(i, 1);
+        }
+        i+=1;
       }
     });
   }
