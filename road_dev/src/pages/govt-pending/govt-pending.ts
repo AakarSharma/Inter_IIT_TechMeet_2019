@@ -46,7 +46,7 @@ export class GovtPendingPage {
   }
 
   getTender(card) {
-    this.navCtrl.push(GovtVerifyPage);
+    this.navCtrl.push(GovtVerifyPage, {'id':card["tender_name"]});
   }
 
 }
