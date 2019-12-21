@@ -37,9 +37,25 @@ export class UserViewProjectsPage {
               public zone:NgZone,
               public loadingCtrl: LoadingController
               ) {
+                
+                // this.loading = this.loadingCtrl.create({
+                //   content: 'Fetching Data......',
+                //   spinner:'bubbles'
+                //   });
   }
 
   async ionViewWillEnter(){
+    this.selected = "present";
+    this.contents = "Present";
+    this.projects = [];
+    this.pastP = [];
+    this.presentP = [];
+    this.futureP = [];
+    this.tenders = [];
+    this.loading = this.loadingCtrl.create({
+        content: 'Fetching Data......',
+        spinner:'bubbles'
+        });
     this.projects = this.presentP;
     this.loading.present();
     const database = this.firedata.database;
