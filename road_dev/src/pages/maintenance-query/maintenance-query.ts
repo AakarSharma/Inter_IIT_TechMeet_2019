@@ -95,7 +95,7 @@ export class MaintenanceQueryPage {
         // Increase rating of user
 
         //Assign task to contractor
-        await database.ref('maintenance').child(this.selectedContractor).child(year).child(day).set({
+        await database.ref('maintenance/').child(this.selectedContractor).child(year).child(day).set({
           "assignDate":d,
           "date":date,
           "lan":lan,

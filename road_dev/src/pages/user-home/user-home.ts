@@ -67,7 +67,6 @@ export class UserHomePage {
 
       for(let potholekey in this.potholes){
         let pothole = this.potholes[potholekey];
-        console.log(Object.keys(pothole));
         if (pothole != undefined) {
           var circle = L.circle([pothole["lan"], pothole["lon"]], {
             color: 'transparent',
