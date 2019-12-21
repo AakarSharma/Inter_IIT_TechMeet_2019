@@ -36,7 +36,7 @@ import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tende
 import { ContractorProgressPage } from '../pages/contractor-progress/contractor-progress';
 import { PotholeDetectorProvider } from '../providers/pothole-detector/pothole-detector';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
-
+import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -119,7 +119,8 @@ export const firebaseConfig = {
     AlertController,
     NativeGeocoder,
     PotholeDetectorProvider,
-    DeviceMotion
+    DeviceMotion,
+    Gyroscope
   ]
 })
 export class AppModule { }
