@@ -31,17 +31,17 @@
               <div><label class="fgh">Address :</label><input type="text" value="{{user.address}}" [disabled]="isDisabled"  class="def" id="address"></div>
           </ion-item>
 
-          <ion-item>    
+          <!-- <ion-item>    
               <div><label class="fgh">Date of Birth :</label><input type="date" value="{{user.dob}}" name="birthday" [disabled]=true readonly class="def"></div>
-          </ion-item>
+          </ion-item> -->
           
           <ion-item >
-              <div><label class="fgh">Aadhar Number :</label><input type="text" value="{{user.aadhar}}" [disabled]=true class="def"></div>
+              <div><label class="fgh">Aadhar Number :</label><input type="text" value="{{user.aadhaar}}" [disabled]=true class="def"></div>
           </ion-item>
           
-          <ion-item>
+          <!-- <ion-item>
               <div><label class="fgh">Pan Number :</label><input type="text" value="{{user.pan}}" [disabled]=true class="def"></div>
-          </ion-item>
+          </ion-item> -->
       
       </ion-list>
       
@@ -51,9 +51,9 @@
   
   
   
-  <div text-center>
+  <!-- <div text-center>
       <button ion-button round clear (click)="presentPrompt()" color="danger" width="200px">Change Password</button>
-  </div>
+  </div> -->
   <div text-center>
       <button ion-button round (click)="logout()" color="danger">Sign Out</button>
   </div>

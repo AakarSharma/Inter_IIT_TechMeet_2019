@@ -10,15 +10,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {AngularFireStorageModule} from '@angular/fire/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { LoginPage } from '../pages/login/login';
 import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
@@ -35,6 +33,7 @@ import { ContractorProfilePage } from '../pages/contractor-profile/contractor-pr
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { GovtContractorsDetailsPage } from '../pages/govt-contractors-details/govt-contractors-details';
 import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tenders-details';
+import { ContractorProgressPage } from '../pages/contractor-progress/contractor-progress';
 
 
 export const firebaseConfig = {
@@ -54,8 +53,6 @@ export const firebaseConfig = {
     UserTabsPage,
     UserHomePage,
     ContractorHomePage,
-    AboutPage,
-    ContactPage,
     ContractorHomePage,
     SubmitReportPage,
     ContractorTabsPage,
@@ -71,7 +68,8 @@ export const firebaseConfig = {
     ContractorProfilePage,
     UserProfilePage,
     GovtContractorsDetailsPage,
-    GovtTendersDetailsPage
+    GovtTendersDetailsPage,
+    ContractorProgressPage
   ],
   imports: [
     BrowserModule,
@@ -89,8 +87,6 @@ export const firebaseConfig = {
     UserTabsPage,
     UserHomePage,
     ContractorHomePage,
-    AboutPage,
-    ContactPage,
     ContractorHomePage,
     SubmitReportPage,
     ContractorTabsPage,
@@ -106,7 +102,8 @@ export const firebaseConfig = {
     ContractorProfilePage,
     UserProfilePage,
     GovtContractorsDetailsPage,
-    GovtTendersDetailsPage
+    GovtTendersDetailsPage,
+    ContractorProgressPage,
   ],
   providers: [
     StatusBar,

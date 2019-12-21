@@ -34,55 +34,29 @@ export class ContractorProfilePage {
 		name: '',
 		phone: '',
 		email: '',
-		dob: '',
 		address:'',
+		aadhaar: ''
 	};
+
+	username = ""
 	
 	constructor( private alertCtrl: AlertController,private app:App, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public toastCtrl: ToastController) {
 		const database = this.firedata.database;
 		const auth = this.fireauth.auth;
 		var temp = auth.currentUser;
 		var temp_email = temp.email;
-		// this.code = temp_email.substring(0,temp_email.indexOf('@'));
-		// var lol;
-		// if(this.code.length == 10){
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('employees').child(this.code.substring(5,10)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user = lol;
-		// 	});
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user['company'] = lol.name;
-		// 	});
-		// 	this.usersS.code = this.code.substring(0,5);
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('supervisors').child(this.code.substring(2,5)).child('details').child('name').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.usersS.name = lol;
-		// 	});
-		// }
-		// else{
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('supervisors').child(this.code.substring(2,5)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user = lol;
-		// 		console.log(this.user)
-		// 		for(var i in this.user["aboveEmployees"]){
-		// 			var code = this.code + this.user["aboveEmployees"][i];
-		// 			this.populate_usersE(code)
-		// 		}
-		// 	});
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user['company'] = lol.name;
-		// 	});
-	}		
-
-
-	
+		this.username = temp_email.split("@")[0];
+		var lol
+		database.ref('contractor/').child(this.username).child('profile').once('value').then(function (snapshot) {
+			lol = snapshot.val();
+		}).then(() => {
+			this.user['name'] = lol['name'];
+			this.user['phone'] = lol['phone'];
+			this.user['email'] = lol['email'];
+			this.user['address'] = lol['address'];
+			this.user['aadhaar'] = lol['aadhaar'];
+		});
+	}
 
 	
 	openEdit(){
@@ -100,6 +74,8 @@ export class ContractorProfilePage {
 		this.user.phone = mobile.value;
 		this.user.address = address.value;
 		const database = this.firedata.database;
+		database.ref('contractor/').child(this.username).child('profiles').update(this.user);
+
 		// if(this.code.length == 10){
 		// 	database.ref('company/').child(this.code.substring(0,2)).child('employees').child(this.code.substring(5,10)).child('details').set(this.user);
 		// }

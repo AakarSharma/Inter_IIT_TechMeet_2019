@@ -25,6 +25,7 @@ import { UserLoginPage } from '../user-login/user-login';
 })
 export class LoginPage {
 
+  public backgroundImage = 'assets/imgs/background-7.jpg';
   constructor(public navCtrl: NavController, public navParams: NavParams, public pothole: PotholeDetectionProvider) {
   }
 

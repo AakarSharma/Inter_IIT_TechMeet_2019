@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, App,AlertController, ToastController , IonicPage, NavParams} from 'ionic-angular';
+import { NavController, App, AlertController, ToastController, IonicPage, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginPage } from '../login/login';
@@ -13,91 +13,66 @@ import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
-  selector: 'page-user-profile',
-  templateUrl: 'user-profile.html',
+	selector: 'page-user-profile',
+	templateUrl: 'user-profile.html',
 })
 export class UserProfilePage {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserProfilePage');
-  }
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad UserProfilePage');
+	}
 
-  @ViewChild('save') saveIt;
+	@ViewChild('save') saveIt;
 	hide = true;
 	isDisabled = true;
 	public base64Image: string;
 	private imageSrc: string;
-	
+
 	user = {
 		name: '',
 		phone: '',
 		email: '',
-		dob: '',
-		address:'',
+		address: '',
+		aadhaar: ''
 	};
-	
-	constructor( private alertCtrl: AlertController,private app:App, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public toastCtrl: ToastController) {
+
+	username = ""
+
+	constructor(private alertCtrl: AlertController, private app: App, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public toastCtrl: ToastController) {
 		const database = this.firedata.database;
 		const auth = this.fireauth.auth;
 		var temp = auth.currentUser;
 		var temp_email = temp.email;
-		// this.code = temp_email.substring(0,temp_email.indexOf('@'));
-		// var lol;
-		// if(this.code.length == 10){
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('employees').child(this.code.substring(5,10)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user = lol;
-		// 	});
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user['company'] = lol.name;
-		// 	});
-		// 	this.usersS.code = this.code.substring(0,5);
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('supervisors').child(this.code.substring(2,5)).child('details').child('name').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.usersS.name = lol;
-		// 	});
-		// }
-		// else{
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('supervisors').child(this.code.substring(2,5)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user = lol;
-		// 		console.log(this.user)
-		// 		for(var i in this.user["aboveEmployees"]){
-		// 			var code = this.code + this.user["aboveEmployees"][i];
-		// 			this.populate_usersE(code)
-		// 		}
-		// 	});
-		// 	database.ref('company/').child(this.code.substring(0,2)).child('details').once('value').then(function(snapshot) {
-		// 		lol = snapshot.val();
-		// 	}).then(() => {
-		// 		this.user['company'] = lol.name;
-		// 	});
-	}		
+		this.username = temp_email.split("@")[0];
+		var lol
+		database.ref('user/').child(this.username).child('profile').once('value').then(function (snapshot) {
+			lol = snapshot.val();
+		}).then(() => {
+			this.user['name'] = lol['name'];
+			this.user['phone'] = lol['phone'];
+			this.user['email'] = lol['email'];
+			this.user['address'] = lol['address'];
+			this.user['aadhaar'] = lol['aadhaar'];
+		});
+	}
 
-
-	
-
-	
-	openEdit(){
+	openEdit() {
 		this.hide = false;
 		this.isDisabled = false;
 	}
-	
-	
-	closeEdit(){
+
+
+	closeEdit() {
 		var email = <HTMLInputElement>document.getElementById('email');
 		var mobile = <HTMLInputElement>document.getElementById('mobile');
 		var address = <HTMLInputElement>document.getElementById('address');
-		
+
 		this.user.email = email.value;
 		this.user.phone = mobile.value;
 		this.user.address = address.value;
 		const database = this.firedata.database;
+		database.ref('user/').child(this.username).child('profiles').update(this.user);
+
 		// if(this.code.length == 10){
 		// 	database.ref('company/').child(this.code.substring(0,2)).child('employees').child(this.code.substring(5,10)).child('details').set(this.user);
 		// }
@@ -107,11 +82,11 @@ export class UserProfilePage {
 		this.hide = true;
 		this.isDisabled = true;
 	}
-	
-	logout(){
+
+	logout() {
 		const auth = this.fireauth.auth;
-		
-		if(auth.currentUser != null){
+
+		if (auth.currentUser != null) {
 			let alert = this.alertCtrl.create({
 				title: 'Confirm Sign Out',
 				message: 'Do you want to sign Out?',
@@ -120,16 +95,16 @@ export class UserProfilePage {
 						text: 'Cancel',
 						role: 'cancel',
 						handler: () => {
-							
+
 						}
 					},
 					{
 						text: 'Sign Out',
 						handler: () => {
-							auth.signOut().then(() =>{
+							auth.signOut().then(() => {
 								this.app.getRootNav().setRoot(LoginPage);
 								// Sign-out successful.
-							}, function(error) {
+							}, function (error) {
 								// An error happened.
 							});
 						}
@@ -138,10 +113,10 @@ export class UserProfilePage {
 			});
 			alert.present();
 		};
-		
-	}
-	
 
-	
+	}
+
+
+
 
 }
