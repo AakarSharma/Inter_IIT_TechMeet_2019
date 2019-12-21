@@ -28,9 +28,6 @@ export class UserLoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLoginPage');
-    this.username.value = "demo";
-    this.password.value = "password";
-    this.login();
   }
 
   // login control goes hare
