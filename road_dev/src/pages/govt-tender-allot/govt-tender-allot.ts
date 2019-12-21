@@ -62,6 +62,7 @@ export class GovtTenderAllotPage {
             if(temp_tenders[key]["govt"] == govt && temp_tenders[key]["status"]==0){
               temp_tenders[tender_id]["id"]=tender_id;
               this.tenders.push(temp_tenders[key]);
+              console.log("Comming in");
             }
           });
         }).then(()=>{
@@ -80,7 +81,6 @@ export class GovtTenderAllotPage {
       this.contractor = Object.keys(temp_c);
       if(this.contractor.length!=0)
         this.selectedContractor = this.contractor[0];
-      console.log(this.contractor);
     });
   }
 
@@ -89,5 +89,21 @@ export class GovtTenderAllotPage {
     await database.ref('tender/').child(id).child("status").set(1);
     await database.ref('tender/').child(id).child("contractor").set(this.selectedContractor);
     await database.ref('tender/').child(id).child("startdate").set(new Date().toDateString());
+    var dd = 
+    {
+      "build":{
+        "job1":"[]",
+        "job2":"[]",
+        "job3":"[]",
+        "job4":"[]",
+        "job5":"[]"
+      },
+      "validate":{
+        "job1":"[]",
+        "job2":"[]"
+      },
+      "verification_pending":false
+    };
+    await database.ref('tender/').child(id).child("progress").set(dd);
   }
 }
