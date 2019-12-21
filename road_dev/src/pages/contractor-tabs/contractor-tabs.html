@@ -1,4 +1,4 @@
-<ion-tabs selectedIndex=1>
+<ion-tabs selectedIndex=1 [color]="isAndroid ? 'primary' : 'darkblue'" mode="md" tabsHighlight="true" class="tab-item-active tabs-icon-top tabs-positive fade-in-not-out">
   <ion-tab [root]="tab1Root" tabTitle="Progress" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
