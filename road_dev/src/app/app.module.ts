@@ -1,5 +1,6 @@
+import { GovtViewProjectsPage } from './../pages/govt-view-projects/govt-view-projects';
 import { AlertController } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera';
 import { MaintenanceReqPage } from './../pages/maintenance-req/maintenance-req';
 import { MaintenanceQueryPage } from './../pages/maintenance-query/maintenance-query';
 import { UserViewProjectsPage } from './../pages/user-view-projects/user-view-projects';
@@ -9,10 +10,10 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -69,7 +70,8 @@ export const firebaseConfig = {
     UserProfilePage,
     GovtContractorsDetailsPage,
     GovtTendersDetailsPage,
-    ContractorProgressPage
+    ContractorProgressPage,
+    GovtViewProjectsPage
   ],
   imports: [
     BrowserModule,
@@ -104,6 +106,7 @@ export const firebaseConfig = {
     GovtContractorsDetailsPage,
     GovtTendersDetailsPage,
     ContractorProgressPage,
+    GovtViewProjectsPage
   ],
   providers: [
     StatusBar,

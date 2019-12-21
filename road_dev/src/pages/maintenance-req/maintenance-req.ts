@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular';
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";
 
@@ -33,6 +33,9 @@ export class MaintenanceReqPage {
     
   }
 
+  ionViewWillEnter(){
+   this.getLocation();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MaintenanceReqPage');
   }
@@ -105,6 +108,8 @@ export class MaintenanceReqPage {
       this.lng=location.coords.longitude;
     }).then(()=>{
       this.loc = true;
+      console.log(this.lat);
+      console.log(this.lng);
     });
   }
 
