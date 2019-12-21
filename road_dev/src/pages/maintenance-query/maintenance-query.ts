@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoadingController } from 'ionic-angular';
@@ -16,14 +15,30 @@ export class MaintenanceQueryPage {
   address: any;
   contractor: any = [];
   loading: any;
+  selectedContractor: string = null;
+  
   constructor(private fireauth: AngularFireAuth,
     private firedata: AngularFireDatabase ,
     public loadingCtrl: LoadingController,
-    private nativeGeocoder: NativeGeocoder,
     public navCtrl: NavController, 
     public navParams: NavParams) {
   }
 
+  async getContractors(){
+    const database = this.firedata.database;
+    const auth = this.fireauth.auth;
+		var temp = auth.currentUser;
+		var temp_c;
+    await database.ref('contractor/').once('value', function(snapshot) {
+      temp_c = snapshot.val();
+    })
+    .then(()=>{
+      this.contractor = Object.keys(temp_c);
+      if(this.contractor.length()!=0)
+        this.selectedContractor = this.contractor[0];
+      console.log(this.contractor);
+    });
+  }
   async ionViewWillEnter(){
     this.loading = this.loadingCtrl.create({
         content: 'Fetching Data......',
@@ -32,25 +47,32 @@ export class MaintenanceQueryPage {
     this.loading.present();
     const database = this.firedata.database;
     var temp_tenders;
-    const auth = this.fireauth.auth;
-		var temp = auth.currentUser;
-		var temp_email = temp.email;
-		let govt = temp_email.split("@")[0];
-    
+      
+    var temp_c;
+    await database.ref('contractor/').once('value', function(snapshot) {
+      temp_c = snapshot.val();
+    })
+    .then(()=>{
+      this.contractor = Object.keys(temp_c);
+      console.log(this.contractor);
+    });
+
     await database.ref('affected_areas/').once('value', function(snapshot) {
         temp_tenders = snapshot.val();
     })
     .then(()=>{
-      temp_tenders.forEach(element => {
-        if( element["govt"]== govt && element["status"]==0){
-          // this.futureP.push(element);
-        } else if(element["govt"]== govt && element["status"]==1){
-          // this.presentP.push(element);
-        } else {
-          // this.pastP.push(element);
+      var keysTenders = Object.keys(temp_tenders);
+      for( let x of keysTenders){
+        var x2 = Object.keys(temp_tenders[x]);
+        for ( let ele of x2){
+          var rt = temp_tenders[x][ele];
+          rt["year"]=x;
+          rt["day"]=ele;
+          console.log(temp_tenders[x][ele]);
+          this.queries.push(rt);
         }
-      });
-    }).then(()=>{
+      }
+      }).then(()=>{
       if(this.loading)
         this.loading.dismiss();
     });
@@ -59,32 +81,23 @@ export class MaintenanceQueryPage {
     console.log('ionViewDidLoad MaintenanceQueryPage');
   }
 
-  async getAddress(lt,ln){
-    let place="";
-    let postalCodel="";
-    this.nativeGeocoder.reverseGeocode(lt, ln).then((result1: NativeGeocoderReverseResult[]) => {
-      place="";
-      console.log(result1[0]);
-      if(result1[0].postalCode!=undefined)
-      {
-        place+=result1[0].postalCode;
-        postalCodel = result1[0].postalCode;
-      }
-    })
-    .catch((error: any) => console.log(error));
-  }
-
-  authenticate(q){
+  async authenticate(user,year,day,q){
+    const database = this.firedata.database; 
+    let rating;
+    await database.ref('user/').child(user).child('profile').child('rating').once('value',function(snap){
+      rating = snap.val();
+    }).then(async function(){
       if(q==1){
         // Increase rating of user
+
         //Assign task to contractor
+        
+        await database.ref('user/').child(user).child('profile').child('rating').set(rating+1);
       } else {
         //Decrease Rating of User
+        await database.ref('user/').child(user).child('profile').child('rating').set(rating-1);
       }
-  }
-
-  getContractors(){
-    //Sort contractors(1st contractor of road), others could be random.
+    });
   }
 
 }
