@@ -33,7 +33,8 @@ export class UserProfilePage {
 		phone: '',
 		email: '',
 		address: '',
-		aadhaar: ''
+		aadhaar: '',
+		rating: 0
 	};
 
 	username = ""
@@ -53,6 +54,7 @@ export class UserProfilePage {
 			this.user['email'] = lol['email'];
 			this.user['address'] = lol['address'];
 			this.user['aadhaar'] = lol['aadhaar'];
+			this.user['rating'] = lol['rating'];
 		});
 	}
 

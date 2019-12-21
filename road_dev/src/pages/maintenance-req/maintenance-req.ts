@@ -4,6 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular';
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";
+import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
 @IonicPage()
 @Component({
@@ -28,6 +29,7 @@ export class MaintenanceReqPage {
               public alertCtrl: AlertController, 
               private camera: Camera,
               public navCtrl: NavController,
+              private nativeGeocoder: NativeGeocoder,
               public navParams: NavParams,
               public geo:Geolocation) {
     
@@ -74,6 +76,27 @@ export class MaintenanceReqPage {
     await this.getPicture(0);
     await  this.upload();
    }
+
+
+   async getAddress(lt,ln){
+    let place="";
+    let postalCodel="";
+
+    if(!document.URL.startsWith('http'))
+    {
+      await this.nativeGeocoder.reverseGeocode(lt, ln).then((result1: NativeGeocoderReverseResult[]) => {
+      place="";
+      console.log(result1[0]);
+      if(result1[0].postalCode!=undefined)
+      {
+        place+=result1[0].postalCode;
+        postalCodel = result1[0].postalCode;
+      }
+      })
+      .catch((error: any) => console.log(error));
+    }
+    return place;
+  }
 
   async sendDataToFirebase(){
     this.getLocation().then(()=>{
