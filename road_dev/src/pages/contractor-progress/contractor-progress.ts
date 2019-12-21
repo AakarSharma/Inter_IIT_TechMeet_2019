@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, Slides, NavController, NavParams } from 'ionic-angular';
+import { Chart } from 'chart.js';
 
 /**
  * Generated class for the ContractorProgressPage page.
@@ -16,36 +17,57 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ContractorProgressPage {
 
   numbers = [];
-  ranks: number[][]
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.ranks = []
-    this.numbers = Array(100).fill(0).map((x,i)=>i);
-    for(let i = 0; i < 100; i++) {
-      this.ranks[i] = [];
-      for(let j=0; j < 5; j++) {
-        this.ranks[i][j] = 0;
-      }
+  ranks: number[][];
+
+  @ViewChild('slider') slider: Slides;
+
+  slides = [
+    {
+      title: 'Dream\'s Adventure',
+      imageUrl: 'assets/imgs/wishlist-1.jpg',
+      songs: 2,
+      private: false
+    },
+    {
+      title: 'For the Weekend',
+      imageUrl: 'assets/imgs/wishlist-2.jpg',
+      songs: 4,
+      private: false
+    },
+    {
+      title: 'Family Time',
+      imageUrl: 'assets/imgs/wishlist-3.jpg',
+      songs: 5,
+      private: true
+    },
+    {
+      title: 'My Trip',
+      imageUrl: 'assets/imgs/wishlist-4.jpg',
+      songs: 12,
+      private: true
     }
+  ];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContractorProgressPage');
-    for(let i = 0; i < 100; i++) {
-      for(let j=0; j < 5; j++) {
-        let block = <HTMLElement>document.querySelector('#block-'+i+'-'+j);
-        if(this.ranks[i][j] == 0){
-          block.style.backgroundColor = "red";
-        }
-        else{
-          if(this.ranks[i][j] == 1){
-            block.style.backgroundColor = "yellow";
-          }
-          else{
-            block.style.backgroundColor = "green";
-          }
-        }
-      }
-    }
+  }
+
+  currentIndex = 0;
+
+  nextSlide() {
+    this.slider.slideNext();
+  }
+
+  previousSlide() {
+    this.slider.slidePrev();
+  }
+
+  onSlideChanged() {
+    this.currentIndex = this.slider.getActiveIndex();
+    console.log('Slide changed! Current index is', this.currentIndex);
   }
 
 }
