@@ -35,8 +35,8 @@ import { GovtContractorsDetailsPage } from '../pages/govt-contractors-details/go
 import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tenders-details';
 import { ContractorProgressPage } from '../pages/contractor-progress/contractor-progress';
 import { PotholeDetectorProvider } from '../providers/pothole-detector/pothole-detector';
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
-import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
+import { DeviceMotion } from '@ionic-native/device-motion';
+import { Gyroscope} from '@ionic-native/gyroscope';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
