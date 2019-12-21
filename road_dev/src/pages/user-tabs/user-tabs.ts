@@ -2,8 +2,6 @@ import { UserViewProjectsPage } from './../user-view-projects/user-view-projects
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
 import { UserHomePage } from '../user-home/user-home';
 import { UserProfilePage } from '../user-profile/user-profile'
 
