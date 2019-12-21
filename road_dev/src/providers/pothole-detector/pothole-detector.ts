@@ -68,11 +68,11 @@ export class PotholeDetectorProvider {
       fseverity = Math.max(closePotholes[key]["severity"], fseverity);
     }
 
-    await database.ref('affected_areas/').child("247667").push({
+    await database.ref('affected_areas/247667/').push({
       "lan": flat,
       "lon": flan,
       "has_photo": false,
-      "confidence": Math.max(fconfidence, 100),
+      "confidence": Math.min(fconfidence, 100),
       "photo": "as",
       "roadname": "unknown",
       "user": "demo",

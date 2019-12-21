@@ -62,8 +62,12 @@ export class UserHomePage {
     database.ref('affected_areas/').child("247667").once('value').then(function (snapshot) {
       lol = snapshot.val();
     }).then(() => {
+      if(!lol) return;
       this.potholes = lol;
-      this.potholes.forEach(pothole => {
+
+      for(let potholekey in this.potholes){
+        let pothole = this.potholes[potholekey];
+        console.log(Object.keys(pothole));
         if (pothole != undefined) {
           var circle = L.circle([pothole["lan"], pothole["lon"]], {
             color: 'transparent',
@@ -72,7 +76,7 @@ export class UserHomePage {
             radius: 5
           }).addTo(this.map);
         }
-      });
+      }
     });
   }
 

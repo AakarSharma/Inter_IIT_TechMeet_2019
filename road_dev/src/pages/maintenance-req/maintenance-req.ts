@@ -153,7 +153,7 @@ export class MaintenanceReqPage {
         {
           text: 'Camera',
           handler: () => {
-            // this.uploadHandlerCamera();
+            this.uploadHandlerCamera();
             this.sendDataToFirebase();
            }
         }
