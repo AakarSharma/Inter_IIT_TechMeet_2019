@@ -1,9 +1,3 @@
-<!--
-  Generated template for the UserViewProjectsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title>UserViewProjects</ion-title>
@@ -34,7 +28,7 @@
       <ion-item>
         <ion-label>Started On: {{data.startdate}}</ion-label>
         <ion-label>Completion Date: {{data.enddate}}</ion-label>
-        <ion-label>Predicted Completion Date: {{data.predicteddate}}</ion-label>
+        <ion-label>Predicted Completion Date: {{data.expectedenddate}}</ion-label>
       </ion-item>
       <ion-item>
       <button ion-button round (click)="showProgress()" *ngIf="selected=='present'">Progress</button>

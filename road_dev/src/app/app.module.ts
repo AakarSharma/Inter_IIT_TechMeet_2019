@@ -1,3 +1,4 @@
+import { GovtTenderAllotPage } from './../pages/govt-tender-allot/govt-tender-allot';
 import { ContractorViewMaintenancePage } from './../pages/contractor-view-maintenance/contractor-view-maintenance';
 import { GovtViewProjectsPage } from './../pages/govt-view-projects/govt-view-projects';
 import { AlertController } from 'ionic-angular';
@@ -83,7 +84,8 @@ export const firebaseConfig = {
     GovtVerifyPage,
     GovtPendingPage,
     GovtViewProjectsPage,
-    ContractorViewMaintenancePage
+    ContractorViewMaintenancePage,
+    GovtTenderAllotPage
   ],
   imports: [
     BrowserModule,
@@ -124,7 +126,8 @@ export const firebaseConfig = {
     GovtVerifyPage,
     GovtPendingPage,
     GovtViewProjectsPage,
-    ContractorViewMaintenancePage
+    ContractorViewMaintenancePage,
+    GovtTenderAllotPage
   ],
   providers: [
     StatusBar,

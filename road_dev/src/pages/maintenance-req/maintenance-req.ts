@@ -122,7 +122,7 @@ export class MaintenanceReqPage {
         temp= Object.keys(temp);
         tt = temp[temp.length-1]+1;
       }
-        this.getLocation().then(async function(){
+        
         var dd = (new Date()).toDateString();
         
         
@@ -131,16 +131,17 @@ export class MaintenanceReqPage {
           "has_photo":false,
           "lan":this.lat,
           "lon":this.lng,
-          "photo":"",
+          "photo":"", 
           "pincode":"247667",
           "roadname":this.road,
           "severity":this.severity,
           "user": user,
           "confidence":0
         };
-        await database.ref("affected_areas/").child("247667").child(tt.toString()).set(uploadTemp);
+        database.ref("affected_areas/").child("247667").child(tt.toString()).set(uploadTemp);
+
       });
-    });
+    
     
   }
 

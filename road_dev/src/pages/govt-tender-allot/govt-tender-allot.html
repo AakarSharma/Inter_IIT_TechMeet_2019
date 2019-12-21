@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>govt-tender-allot</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let data of tenders">
+    <ion-card-header color="dark" text-center >
+      {{data.roadname}} : By {{data.govt}}
+    </ion-card-header>
+    <ion-card-content text-wrap>
+      <ion-item>
+        <ion-label>Tender Issue Date: {{data.issuedate}}</ion-label>
+        <ion-label>Expected Completion Date: {{data.expectedenddate}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contractor:</ion-label>
+        <ion-select [(ngModel)]="selectedContractor">
+          <ion-option *ngFor="let cont of contractor" [value]="cont">
+            {{cont}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+      <button ion-button round (click)="allotTender()">Allot Tender</button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

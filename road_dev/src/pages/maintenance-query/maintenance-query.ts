@@ -34,7 +34,7 @@ export class MaintenanceQueryPage {
     })
     .then(()=>{
       this.contractor = Object.keys(temp_c);
-      if(this.contractor.length()!=0)
+      if(this.contractor.length!=0)
         this.selectedContractor = this.contractor[0];
       console.log(this.contractor);
     });
