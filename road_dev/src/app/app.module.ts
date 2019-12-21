@@ -22,7 +22,6 @@ import { LoginPage } from '../pages/login/login';
 import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { ContractorHomePage } from '../pages/contractor-home/contractor-home';
-import { PotholeDetectionProvider } from '../providers/pothole-detection/pothole-detection';
 import { HttpClientModule } from '@angular/common/http';
 import { GovtLoginPage } from '../pages/govt-login/govt-login';
 import { ContractorLoginPage } from '../pages/contractor-login/contractor-login';
@@ -35,6 +34,8 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { GovtContractorsDetailsPage } from '../pages/govt-contractors-details/govt-contractors-details';
 import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tenders-details';
 import { ContractorProgressPage } from '../pages/contractor-progress/contractor-progress';
+import { PotholeDetectorProvider } from '../providers/pothole-detector/pothole-detector';
+import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 
 
 export const firebaseConfig = {
@@ -111,12 +112,14 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: PotholeDetectionProvider, useClass: HttpClientModule },
+    PotholeDetectorProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Geolocation,
     Camera,
     AlertController,
-    NativeGeocoder
+    NativeGeocoder,
+    PotholeDetectorProvider,
+    DeviceMotion
   ]
 })
 export class AppModule { }
