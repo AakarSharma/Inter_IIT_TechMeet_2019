@@ -10,23 +10,35 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-segment>
-    <ion-segment-button (ionSelect)="pastProjects()">
+  <ion-segment [(ngModel)]="selected">
+    <ion-segment-button value="past" (ionSelect)="pastProjects()">
       Past Projects
     </ion-segment-button>
-    <ion-segment-button (ionSelect)="presentProjects()">
+    <ion-segment-button value="present" (ionSelect)="presentProjects()">
       Present Projects
     </ion-segment-button>
-    <ion-segment-button (ionSelect)="upcomingProjects()">
+    <ion-segment-button value="future" (ionSelect)="upcomingProjects()">
       Upcoming Projects      
     </ion-segment-button>
   </ion-segment>
   <ion-card *ngFor="let data of projects">
-    <ion-card-header>
-      Road Name
+    <ion-card-header color="dark" text-center>
+      {{data.roadname}}
     </ion-card-header>
     <ion-card-content>
-      Some Info.
+      <ion-item>
+        <ion-label>Contractor: {{data.contractor}}</ion-label>
+        <ion-label>Tender Issue Date: {{data.issuedate}}</ion-label>
+        <ion-label>Expected Completion Date: {{data.expectedenddate}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Started On: {{data.startdate}}</ion-label>
+        <ion-label>Completion Date: {{data.enddate}}</ion-label>
+        <ion-label>Predicted Completion Date: {{data.predicteddate}}</ion-label>
+      </ion-item>
+      <ion-item>
+      <button ion-button round (click)="showProgress()" *ngIf="selected=='present'">Progress</button>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>

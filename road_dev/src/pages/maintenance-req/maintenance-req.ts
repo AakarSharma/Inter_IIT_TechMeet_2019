@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController } from 'ionic-angular';
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";

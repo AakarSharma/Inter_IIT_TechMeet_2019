@@ -23,8 +23,8 @@
     "@ionic-native/camera": "^5.18.0",
     "@ionic-native/core": "4.20.0",
     "@ionic-native/device-motion": "^5.18.0",
-    "@ionic-native/geolocation": "^5.18.0",
-    "@ionic-native/native-geocoder": "^5.18.0",
+    "@ionic-native/geolocation": "^4.20.0",
+    "@ionic-native/native-geocoder": "^4.20.0",
     "@ionic-native/splash-screen": "4.20.0",
     "@ionic-native/status-bar": "4.20.0",
     "@ionic/storage": "2.2.0",
@@ -66,8 +66,8 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {},
       "cordova-plugin-camera": {},
+      "cordova-plugin-geolocation": {},
       "cordova-plugin-nativegeocoder": {}
     },
     "platforms": [

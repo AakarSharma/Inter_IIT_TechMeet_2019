@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 
 /**
  * Generated class for the MaintenanceQueryPage page.
@@ -31,22 +31,6 @@ export class MaintenanceQueryPage {
     let postalCodel="";
     this.nativeGeocoder.reverseGeocode(lt, ln).then((result1: NativeGeocoderResult[]) => {
       place="";
-      if(result1[0].subThoroughfare!=undefined)
-      {
-        place+=result1[0].subThoroughfare+", ";
-      }
-      if(result1[0].thoroughfare!=undefined)
-      {
-        place+=result1[0].thoroughfare+", ";
-      }
-      if(result1[0].subLocality!=undefined)
-      {
-        place+=result1[0].subLocality+", ";
-      }
-      if(result1[0].locality!=undefined)
-      {
-        place+=result1[0].locality+", ";
-      }
       if(result1[0].postalCode!=undefined)
       {
         place+=result1[0].postalCode;
