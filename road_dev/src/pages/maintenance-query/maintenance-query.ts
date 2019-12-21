@@ -15,7 +15,7 @@ export class MaintenanceQueryPage {
   address: any;;
   contractor: any = [];
   loading: any;
-  selectedContractor: string = null;
+  selectedContractor: string;
   
   constructor(private fireauth: AngularFireAuth,
     private firedata: AngularFireDatabase ,
@@ -33,10 +33,12 @@ export class MaintenanceQueryPage {
       temp_c = snapshot.val();
     })
     .then(()=>{
-      this.contractor = Object.keys(temp_c);
-      if(this.contractor.length!=0)
-        this.selectedContractor = this.contractor[0];
-      console.log(this.contractor);
+      if(temp_c!=undefined && temp_c!=null){
+        this.contractor = Object.keys(temp_c);
+        if(this.contractor.length!=0)
+          this.selectedContractor = this.contractor[0];
+        console.log(this.contractor);
+      }
     });
   }
   async ionViewWillEnter(){
@@ -54,6 +56,7 @@ export class MaintenanceQueryPage {
     })
     .then(()=>{
       this.contractor = Object.keys(temp_c);
+      this.selectedContractor = this.contractor[0];
       console.log(this.contractor);
     });
 

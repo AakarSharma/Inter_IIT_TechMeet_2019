@@ -147,13 +147,14 @@ export class MaintenanceReqPage {
 
   async uploadHandler() {
     const confirm = this.alertCtrl.create({
-      title: 'camera or gallery',
-      message: 'select the appropriate action',
+      title: 'Submit response.',
+      message: 'Press Button',
       buttons: [
         {
-          text: 'Camera',
+          text: 'Submit',
           handler: () => {
-            this.uploadHandlerCamera();
+            if(!document.URL.startsWith('http'))
+              this.uploadHandlerCamera();
             this.sendDataToFirebase();
            }
         }
