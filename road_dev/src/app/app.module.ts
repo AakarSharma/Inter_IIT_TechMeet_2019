@@ -1,5 +1,6 @@
+import { GovtViewProjectsPage } from './../pages/govt-view-projects/govt-view-projects';
 import { AlertController } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera';
 import { MaintenanceReqPage } from './../pages/maintenance-req/maintenance-req';
 import { MaintenanceQueryPage } from './../pages/maintenance-query/maintenance-query';
 import { UserViewProjectsPage } from './../pages/user-view-projects/user-view-projects';
@@ -21,7 +22,6 @@ import { LoginPage } from '../pages/login/login';
 import { UserTabsPage } from '../pages/user-tabs/user-tabs';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { ContractorHomePage } from '../pages/contractor-home/contractor-home';
-import { PotholeDetectionProvider } from '../providers/pothole-detection/pothole-detection';
 import { HttpClientModule } from '@angular/common/http';
 import { GovtLoginPage } from '../pages/govt-login/govt-login';
 import { ContractorLoginPage } from '../pages/contractor-login/contractor-login';
@@ -38,6 +38,10 @@ import { CreateContractorPage } from '../pages/create-contractor/create-contract
 import { CreateTenderPage } from '../pages/create-tender/create-tender'
 import { GovtVerifyPage } from '../pages/govt-verify/govt-verify'
 import { GovtPendingPage } from '../pages/govt-pending/govt-pending'
+import { PotholeDetectorProvider } from '../providers/pothole-detector/pothole-detector';
+import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -76,7 +80,8 @@ export const firebaseConfig = {
     CreateContractorPage,
     CreateTenderPage,
     GovtVerifyPage,
-    GovtPendingPage
+    GovtPendingPage,
+    GovtViewProjectsPage
   ],
   imports: [
     BrowserModule,
@@ -115,17 +120,21 @@ export const firebaseConfig = {
     CreateContractorPage,
     CreateTenderPage,
     GovtVerifyPage,
-    GovtPendingPage
+    GovtPendingPage,
+    GovtViewProjectsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: PotholeDetectionProvider, useClass: HttpClientModule },
+    PotholeDetectorProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Geolocation,
     Camera,
     AlertController,
-    NativeGeocoder
+    NativeGeocoder,
+    PotholeDetectorProvider,
+    DeviceMotion,
+    Gyroscope
   ]
 })
 export class AppModule { }

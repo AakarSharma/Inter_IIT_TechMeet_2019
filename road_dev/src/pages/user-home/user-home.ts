@@ -1,8 +1,10 @@
 import { MaintenanceReqPage } from './../maintenance-req/maintenance-req';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { PotholeDetectorProvider } from '../../providers/pothole-detector/pothole-detector'
 /**
  * Generated class for the UserHomePage page.
  *
@@ -19,33 +21,58 @@ declare var L;
 })
 export class UserHomePage {
   @ViewChild('map') mapElement: ElementRef;
-  lat:any;
-  lng:any;
-  loc:boolean;
+  lat: any;
+  lng: any;
+  loc: boolean;
   map: any;
+  potholes: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geo:Geolocation) {
+  constructor(private potholeDetectorProvider:PotholeDetectorProvider, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
+    this.potholes = [];
+    this.potholeDetectorProvider.detect();
   }
 
-  async getLocation(){
+  async getLocation() {
     await this.geo.getCurrentPosition().then((location) => {
-      this.lat=location.coords.latitude;
-      this.lng=location.coords.longitude;
-    }).then(()=>{
+      this.lat = location.coords.latitude;
+      this.lng = location.coords.longitude;
+    }).then(() => {
       this.loc = true;
     });
   }
 
   ionViewDidLoad() {
-    this.getLocation().then(()=>{
-      var mymap = L.map('map').setView([this.lat, this.lng], 13);
+    this.getLocation().then(() => {
+      this.map = L.map('map').setView([this.lat, this.lng], 13);
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjR2bWhrMGkwcTNkbnBja2loZ3B3dSJ9.gd49oQODGO07vZkGOOsmog', {
         maxZoom: 18,
         id: 'mapbox/streets-v11',
         accessToken: 'pk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjRydnhyMGh5YzNqbnBuZTJvNjF4eiJ9.4p6cRrpJT8C6ypZAbZD8yA'
-      }).addTo(mymap);
-      L.marker([this.lat, this.lng]).addTo(mymap);
-    })
+      }).addTo(this.map);
+      L.marker([this.lat, this.lng]).addTo(this.map);
+      this.printPotholes();
+    });
+  }
+
+  printPotholes() {
+    const database = this.firedata.database;
+    const auth = this.fireauth.auth;
+    let lol;
+    database.ref('affected_areas/').child("201001").once('value').then(function (snapshot) {
+      lol = snapshot.val();
+    }).then(() => {
+      this.potholes = lol;
+      this.potholes.forEach(pothole => {
+        if (pothole != undefined) {
+          var circle = L.circle([pothole["lan"], pothole["lon"]], {
+            color: 'transparent',
+            fillColor: '#f03',
+            fillOpacity: 0.01*pothole["confidence"],
+            radius: 5
+          }).addTo(this.map);
+        }
+      });
+    });
   }
 
   navToMaintenanceReq() {

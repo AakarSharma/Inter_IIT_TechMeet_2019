@@ -1,3 +1,4 @@
+import { GovtViewProjectsPage } from './../govt-view-projects/govt-view-projects';
 import { MaintenanceQueryPage } from './../maintenance-query/maintenance-query';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -21,7 +22,8 @@ export class GovtTabsPage {
   tab1Root = GovtTendersPage;
   tab2Root = GovtContractorsPage;
   tab3Root = MaintenanceQueryPage;
-  tab4Root = GovtPendingPage;
+  tab5Root = GovtPendingPage;
+  tab4Root = GovtViewProjectsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

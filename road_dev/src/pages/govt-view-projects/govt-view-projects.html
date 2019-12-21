@@ -17,15 +17,12 @@
     <ion-segment-button value="present" (ionSelect)="presentProjects()">
       Present Projects
     </ion-segment-button>
-    <ion-segment-button value="future" (ionSelect)="upcomingProjects()">
-      Upcoming Projects      
-    </ion-segment-button>
   </ion-segment>
   <ion-card *ngFor="let data of projects">
-    <ion-card-header color="dark" text-center >
-      {{data.roadname}} : By {{data.govt}}
+    <ion-card-header color="dark" text-center>
+      {{data.roadname}}
     </ion-card-header>
-    <ion-card-content text-wrap>
+    <ion-card-content>
       <ion-item>
         <ion-label>Contractor: {{data.contractor}}</ion-label>
         <ion-label>Tender Issue Date: {{data.issuedate}}</ion-label>
