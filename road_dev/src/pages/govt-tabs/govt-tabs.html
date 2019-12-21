@@ -1,6 +1,6 @@
-<ion-tabs selectedIndex=0>
-  <ion-tab [root]="tab1Root" tabTitle="Tenders" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Contractors" tabIcon="home"></ion-tab>
+<ion-tabs selectedIndex=0 [color]="isAndroid ? 'primary' : 'darkblue'" mode="md" tabsHighlight="true" class="tab-item-active tabs-icon-top tabs-positive fade-in-not-out">
+  <ion-tab [root]="tab1Root" tabTitle="Tenders" tabIcon="browsers"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Contractors" tabIcon="briefcase"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Query" tabIcon="clipboard"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="Projects" tabIcon="book"></ion-tab>
   <ion-tab [root]="tab5Root" tabTitle="Pending" tabIcon="home"></ion-tab>

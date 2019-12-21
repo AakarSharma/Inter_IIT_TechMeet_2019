@@ -1,3 +1,4 @@
+import { ContractorViewMaintenancePage } from './../pages/contractor-view-maintenance/contractor-view-maintenance';
 import { GovtViewProjectsPage } from './../pages/govt-view-projects/govt-view-projects';
 import { AlertController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
@@ -81,7 +82,8 @@ export const firebaseConfig = {
     CreateTenderPage,
     GovtVerifyPage,
     GovtPendingPage,
-    GovtViewProjectsPage
+    GovtViewProjectsPage,
+    ContractorViewMaintenancePage
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,8 @@ export const firebaseConfig = {
     CreateTenderPage,
     GovtVerifyPage,
     GovtPendingPage,
-    GovtViewProjectsPage
+    GovtViewProjectsPage,
+    ContractorViewMaintenancePage
   ],
   providers: [
     StatusBar,

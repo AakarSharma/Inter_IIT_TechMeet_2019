@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GovtTendersDetailsPage } from '../govt-tenders-details/govt-tenders-details';
+import { CreateTenderPage } from '../create-tender/create-tender';
 
 /**
  * Generated class for the GovtTendersPage page.
@@ -52,7 +53,7 @@ export class GovtTendersPage {
   createTender(){
     // Pass date also
     var d = new Date().toDateString();
-
+    this.navCtrl.push(CreateTenderPage);
 
   //   const animationsOptions = {
   //     animation: 'md-transition',
