@@ -27,7 +27,7 @@ export class UserHomePage {
   map: any;
   potholes: any;
 
-  constructor(private potholeDetectorProvider:PotholeDetectorProvider, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
+  constructor(private potholeDetectorProvider: PotholeDetectorProvider, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
     this.potholes = [];
     this.potholeDetectorProvider.detect();
   }
@@ -42,7 +42,7 @@ export class UserHomePage {
   }
 
   ionViewDidLoad() {
-    this.getLocation().then(() => {
+    this.getLocation().then(()=>{
       this.map = L.map('map').setView([this.lat, this.lng], 13);
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjR2bWhrMGkwcTNkbnBja2loZ3B3dSJ9.gd49oQODGO07vZkGOOsmog', {
         maxZoom: 18,
@@ -67,7 +67,7 @@ export class UserHomePage {
           var circle = L.circle([pothole["lan"], pothole["lon"]], {
             color: 'transparent',
             fillColor: '#f03',
-            fillOpacity: 0.01*pothole["confidence"],
+            fillOpacity: 0.01 * pothole["confidence"],
             radius: 5
           }).addTo(this.map);
         }
