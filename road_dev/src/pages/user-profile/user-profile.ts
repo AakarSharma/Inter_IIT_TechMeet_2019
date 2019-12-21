@@ -44,7 +44,7 @@ export class UserProfilePage {
 		var temp = auth.currentUser;
 		var temp_email = temp.email;
 		this.username = temp_email.split("@")[0];
-		var lol
+		var lol;
 		database.ref('user/').child(this.username).child('profile').once('value').then(function (snapshot) {
 			lol = snapshot.val();
 		}).then(() => {
