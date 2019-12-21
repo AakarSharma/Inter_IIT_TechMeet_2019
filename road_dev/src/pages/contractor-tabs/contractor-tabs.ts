@@ -9,10 +9,10 @@ import { ContractorProgressPage } from './../contractor-progress/contractor-prog
 })
 export class ContractorTabsPage {
 
-  tab1Root = ContractorProgressPage;
-  tab2Root = ContractorHomePage;
-  tab3Root = ContractorProfilePage;
-  tab4Root = ContractorViewMaintenancePage;
+  // tab1Root = ContractorProgressPage;
+  tab1Root = ContractorHomePage;
+  tab2Root = ContractorProfilePage;
+  tab3Root = ContractorViewMaintenancePage;
 
   constructor() {
 

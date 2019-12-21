@@ -32,6 +32,9 @@
       <ion-item>
         <button ion-button *ngIf="tense=='present'" (click)="navToSubmitReport(data.id)"> Submit Report</button>
       </ion-item>
+      <ion-item>
+        <button ion-button (click)="showProgress(data.id)"> Show Progress</button>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>  
