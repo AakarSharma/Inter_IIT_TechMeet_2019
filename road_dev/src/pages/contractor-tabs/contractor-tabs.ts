@@ -1,3 +1,4 @@
+import { ContractorViewMaintenancePage } from './../contractor-view-maintenance/contractor-view-maintenance';
 import { ContractorHomePage } from './../contractor-home/contractor-home';
 import { Component } from '@angular/core';
 import { ContractorProfilePage } from './../contractor-profile/contractor-profile';
@@ -11,6 +12,7 @@ export class ContractorTabsPage {
   tab1Root = ContractorProgressPage;
   tab2Root = ContractorHomePage;
   tab3Root = ContractorProfilePage;
+  tab4Root = ContractorViewMaintenancePage;
 
   constructor() {
 
