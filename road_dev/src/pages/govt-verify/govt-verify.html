@@ -15,34 +15,53 @@
   <div class="main-content" text-wrap text-center>
       <hr>
 
-    <ion-list no-lines class="descp">
+      <ion-list no-lines class="descp">
             
-      <ion-item >
-          <div><label class="fgh">Sub-Grade :</label><input type="number" value="{{job.job1}}" [disabled]="false"  class="def" id="email"></div>
-          <span>{{left.job1}} left.</span>
-      </ion-item>
-      
-      <ion-item>
-          <div><label class="fgh">GSB :</label><input type="number" value="{{job.job2}}" [disabled]="false"  class="def" id="mobile"></div>
-          <span>{{left.job2}} left.</span>
-      </ion-item>
-      
-      <ion-item>
-          <div><label class="fgh">WMM :</label><input type="number" value="{{job.job3}}" [disabled]="false"  class="def" id="address"></div>
-          <span>{{left.job3}} left.</span>
-      </ion-item>
-      
-      <ion-item >
-          <div><label class="fgh">DBM :</label><input type="number" value="{{job.job4}}" [disabled]=false class="def"></div>
-          <span>{{left.job4}} left.</span>
-      </ion-item>
-      
-      <ion-item>
-          <div><label class="fgh">AC/BC :</label><input type="number" value="{{job.job5}}" [disabled]=false class="def"></div>
-          <span>{{left.job5}} left.</span>
-      </ion-item>
-
-    </ion-list>
+        <!-- <ion-item >
+            <div><label class="fgh">Sub-Grade :</label><input type="number" value="{{job.job1}}" [disabled]="false"  class="def" id="email"></div>
+            <span>{{left.job1}} left.</span>
+        </ion-item> -->
+        <div><label class="fgh">Sub-Grade :</label></div>
+        <ion-item>
+          <ion-range dualKnobs="true" pin="true" [(ngModel)]="job1" color="dark" min="0" max="{{roadLength}}" step="1" >
+            <ion-icon range-left small name="brush"></ion-icon>
+            <ion-icon range-right name="brush"></ion-icon>
+          </ion-range>
+        </ion-item>
+  
+        <div><label class="fgh">GSB :</label></div>
+        <ion-item>
+          <ion-range dualKnobs="true" pin="true" [(ngModel)]="job2" color="dark" min="0" max="{{roadLength}}" step="1" >
+            <ion-icon range-left small name="brush"></ion-icon>
+            <ion-icon range-right name="brush"></ion-icon>
+          </ion-range>
+        </ion-item>
+  
+        <div><label class="fgh">WMM :</label></div>
+        <ion-item>
+          <ion-range dualKnobs="true" pin="true" [(ngModel)]="job3" color="dark" min="0" max="{{roadLength}}" step="1" >
+            <ion-icon range-left small name="brush"></ion-icon>
+            <ion-icon range-right name="brush"></ion-icon>
+          </ion-range>
+        </ion-item>
+  
+        <div><label class="fgh">DBM :</label></div>
+        <ion-item>
+          <ion-range dualKnobs="true" pin="true" [(ngModel)]="job4" color="dark" min="0" max="{{roadLength}}" step="1" >
+            <ion-icon range-left small name="brush"></ion-icon>
+            <ion-icon range-right name="brush"></ion-icon>
+          </ion-range>
+        </ion-item>
+  
+        <div><label class="fgh">AC / BC :</label></div>
+        <ion-item>
+          <ion-range dualKnobs="true" pin="true" [(ngModel)]="job5" color="dark" min="0" max="{{roadLength}}" step="1" >
+            <ion-icon range-left small name="brush"></ion-icon>
+            <ion-icon range-right name="brush"></ion-icon>
+          </ion-range>
+        </ion-item>
+  
+      </ion-list>
 
     <div text-center>
       <button ion-button block (click)="verify()">Verify</button>

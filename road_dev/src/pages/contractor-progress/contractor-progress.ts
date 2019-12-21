@@ -3,6 +3,7 @@ import { IonicPage, Slides, NavController, NavParams } from 'ionic-angular';
 import * as p5 from 'p5';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserReportPage } from '../user-report/user-report'
 
 // import { Chart } from 'chart.js';
 
@@ -191,4 +192,10 @@ export class ContractorProgressPage {
       });
     });
   }
+
+  report(){
+    this.navCtrl.push(UserReportPage);
+  }
+
+
 }

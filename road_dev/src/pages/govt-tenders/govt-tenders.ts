@@ -1,3 +1,4 @@
+import { GovtTenderAllotPage } from './../govt-tender-allot/govt-tender-allot';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Item, ItemSliding, App, AlertController  } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -60,6 +61,10 @@ export class GovtTendersPage {
   //     duration: 1000
   //   }
   //   this.navCtrl.push(CreateCompanyPage, {}, animationsOptions);
+  }
+
+  allotTender(){
+    this.navCtrl.push(GovtTenderAllotPage);
   }
 
   deleteTender(index) {
