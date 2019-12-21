@@ -5,13 +5,26 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Login</ion-title>
+  <ion-navbar text-center color="secondary">
+    <ion-title text-center color="secondary">Login As</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <button ion-button (click)="government()"><span class="textColor">Government</span></button>
+<ion-content padding [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}">
+    <!-- <button ion-button (click)="government()"><span class="textColor">Government</span></button>
     <button ion-button (click)="contractor()"><span class="textColor">Contractor</span></button>
-    <button ion-button (click)="user()"><span class="textColor">User</span></button>
+    <button ion-button (click)="user()"><span class="textColor">User</span></button> -->
+    <div text-center>
+      <button ion-button round (click)="government()">Government</button>
+    </div>
+    <div text-center>
+      <button ion-button round (click)="contractor()">Contractor</button>
+    </div>
+    <div text-center>
+      <button ion-button round (click)="user()" style="width: 145px;">User</button>
+    </div>
+    
+    
+    
+    <!-- <button ion-button round>Round Button</button> -->
 </ion-content>

@@ -35,6 +35,7 @@ import { ContractorProfilePage } from '../pages/contractor-profile/contractor-pr
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { GovtContractorsDetailsPage } from '../pages/govt-contractors-details/govt-contractors-details';
 import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tenders-details';
+import { ContractorProgressPage } from '../pages/contractor-progress/contractor-progress';
 
 
 export const firebaseConfig = {
@@ -71,7 +72,8 @@ export const firebaseConfig = {
     ContractorProfilePage,
     UserProfilePage,
     GovtContractorsDetailsPage,
-    GovtTendersDetailsPage
+    GovtTendersDetailsPage,
+    ContractorProgressPage
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ export const firebaseConfig = {
     ContractorProfilePage,
     UserProfilePage,
     GovtContractorsDetailsPage,
-    GovtTendersDetailsPage
+    GovtTendersDetailsPage,
+    ContractorProgressPage,
   ],
   providers: [
     StatusBar,
