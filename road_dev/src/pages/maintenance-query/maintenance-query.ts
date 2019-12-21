@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
 /**
  * Generated class for the MaintenanceQueryPage page.
@@ -29,7 +29,8 @@ export class MaintenanceQueryPage {
   async getAddress(lt,ln){
     let place="";
     let postalCodel="";
-    this.nativeGeocoder.reverseGeocode(lt, ln).then((result1: NativeGeocoderResult[]) => {
+    this.nativeGeocoder.reverseGeocode(lt, ln).then((result1: NativeGeocoderReverseResult[]) => {
+      console.log(result1);
       place="";
       if(result1[0].postalCode!=undefined)
       {

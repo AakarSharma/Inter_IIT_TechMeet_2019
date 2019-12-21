@@ -35,6 +35,7 @@ export class UserHomePage {
       this.loc = true;
     });
   }
+
   ionViewDidLoad() {
     this.getLocation().then(()=>{
       var mymap = L.map('map').setView([this.lat, this.lng], 13);
@@ -42,7 +43,8 @@ export class UserHomePage {
         maxZoom: 18,
         id: 'mapbox/streets-v11',
         accessToken: 'pk.eyJ1IjoidmlrYXNnb2xhMTIzMTMiLCJhIjoiY2s0ZjRydnhyMGh5YzNqbnBuZTJvNjF4eiJ9.4p6cRrpJT8C6ypZAbZD8yA'
-      }).addTo(mymap);  
+      }).addTo(mymap);
+      L.marker([this.lat, this.lng]).addTo(mymap);
     })
   }
 
