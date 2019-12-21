@@ -3,17 +3,35 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 import { Platform } from 'ionic-angular';
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { Observable, zip } from 'rxjs';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
 @Injectable()
 export class PotholeDetectorProvider {
+  lat: any;
+  lng: any;
+  loc: boolean;
 
-  constructor(private gyroscope: Gyroscope, private deviceMotion: DeviceMotion, private platform: Platform) {
+  constructor(public geo: Geolocation, private nativeGeocoder:NativeGeocoder, private gyroscope: Gyroscope, private deviceMotion: DeviceMotion, private platform: Platform) {
+  }
+
+  async getLocation() {
+    await this.geo.getCurrentPosition().then((location) => {
+      this.lat = location.coords.latitude;
+      this.lng = location.coords.longitude;
+    }).then(() => {
+      this.loc = true;
+    });
+  }
+
+  savePothole(lat, lon){
+    // update in database
   }
 
   detect() {
     this.platform.ready().then(() => {
       let options = {
-        frequency: 100
+        frequency: 500
       }
       Observable.create()
       let sensors = zip(
@@ -32,7 +50,11 @@ export class PotholeDetectorProvider {
           sensorsDataPack.shift();
           sensorsDataPack.push({ acceleration: sensorsData[0], gyroscope: sensorsData[1] });
           if (this.checkIsPotHole(sensorsDataPack)) {
+            this.getLocation().then(() => {
+                this.savePothole(this.lat, this.lng);
+            });
             console.log("PotHole");
+            sensorsDataPack = sensorsDataPack.slice(3);
           }
         }
       });
