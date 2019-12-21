@@ -15,11 +15,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SubmitReportPage {
 
+  job = {
+		job1: '',
+		job2: '',
+		job3: '',
+		job4: '',
+		job5: ''
+  };
+  
+  left = {
+    job1: '',
+		job2: '',
+		job3: '',
+		job4: '',
+		job5: ''
+  };
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubmitReportPage');
+  }
+
+  submit(){
+
+  }
+
+  showProgress(){
+
   }
 
 }

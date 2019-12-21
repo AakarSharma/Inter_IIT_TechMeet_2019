@@ -1,3 +1,147 @@
 page-submit-report {
+    .bg-modal{
+        background-color: skyblue;
+    }
 
+
+    logo {
+      width: 50%;
+      height: auto;
+      max-width: 12em;
+      margin: 0 auto;
+      padding-bottom: 50px;
+    }
+
+
+	.header-image {
+        background-image: url(../assets/imgs/background-5.jpg);
+        height: 30vh;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        z-index: -1;
+
+        .edit{
+            width: 30px;
+            height: 30px;
+            margin-top: 10px;
+            margin-right: 10px;
+            float: right;
+        }
+    }
+    .main-content {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 20px;
+        background-color: white;
+        -webkit-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+        position: relative !important;
+
+        .pic{
+            float: left;
+        }
+        .entry{
+            float: right;
+            padding-left: 10px;
+        }
+        .item{
+            display: inline;
+        }
+        .ask{
+            width: 100px;
+            float: right
+        }
+        
+        .def{
+            float: right;
+        }
+
+        .pad-up{
+            margin-top: 8px;
+        }
+
+        .fgh{
+            padding:4px 0 0;
+            display: inline-block;
+            display: -moz-inline-box;
+            -moz-box-orient: vertical;
+            vertical-align: top;
+            zoom: 1;
+            *display: inline;
+        }
+
+        ion-icon {
+            padding:-40px 0 0 0;
+            display: inline-block;
+            display: -moz-inline-box;
+            -moz-box-orient: vertical;
+            vertical-align: top;
+            zoom: 1;
+            *display: inline;
+        }
+        
+        input{
+            width: 165px;
+            background-color: lightblue;
+            // background: transparent;
+            // border:1px solid #fff;
+        }
+
+        input[disabled]{
+          color:grey;
+          //border-color:transparent;
+          background: transparent;
+          border:1px solid #fff;
+        }
+
+        input[readonly]{
+          color:grey;
+          //border-color:transparent;
+          background: transparent;
+          border:1px solid #fff;
+        }
+
+    }
+    .circular {
+        width: 100px;
+        height: 100px;
+        position: inherit;
+        // border-radius: 50%;
+        // -webkit-border-radius: 150px;
+        // -moz-border-radius: 150px;
+        border: 2px solid blue;
+        background: url(../assets/imgs/profile.png) no-repeat;
+        background-size: 100%;
+        margin-top: -70px;
+        margin-left: auto;
+        margin-right: auto;
+        // margin-bottom: 50px;
+    }
+    .profile-description {
+        font-size: 15px;
+        color: #888;
+    }
+    .saveButton {
+        display:none;
+    }
+    input[disabled]{
+      color:grey;
+      //border-color:transparent;
+      background: transparent;
+      border:1px solid #fff;
+    }
+
+    .dis{
+        padding-bottom: 20px;
+        margin-bottom: 0;
+        font-size: 20px;
+        color: #32a6ef;
+    }
+
+    .dis-item:hover{
+        background-color: lightblue;
+    }
 }
