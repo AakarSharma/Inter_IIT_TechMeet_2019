@@ -25,6 +25,7 @@ export class MaintenanceReqPage {
   area: string = "";
   date: string = "";
   severity: number = 1;
+  postalCode: string = "";
   constructor(public storage:AngularFireStorage,
               public alertCtrl: AlertController, 
               private camera: Camera,
@@ -77,20 +78,20 @@ export class MaintenanceReqPage {
     await  this.upload();
    }
 
-
    async getAddress(lt,ln){
     let place="";
-    let postalCodel="";
-
+    // let postalCodel="";
+    this.postalCode = "247667";
     if(!document.URL.startsWith('http'))
     {
+      
       await this.nativeGeocoder.reverseGeocode(lt, ln).then((result1: NativeGeocoderReverseResult[]) => {
       place="";
       console.log(result1[0]);
       if(result1[0].postalCode!=undefined)
       {
         place+=result1[0].postalCode;
-        postalCodel = result1[0].postalCode;
+        this.postalCode = result1[0].postalCode;
       }
       })
       .catch((error: any) => console.log(error));
@@ -101,9 +102,7 @@ export class MaintenanceReqPage {
   async sendDataToFirebase(){
     this.getLocation().then(()=>{
       this.date = (new Date()).toDateString();
-      // 
-      // 
-      // 
+      
     });
   }
 
@@ -133,6 +132,8 @@ export class MaintenanceReqPage {
       this.loc = true;
       console.log(this.lat);
       console.log(this.lng);
+    }).then(()=>{
+      this.getAddress(this.lat,this.lng);
     });
   }
 

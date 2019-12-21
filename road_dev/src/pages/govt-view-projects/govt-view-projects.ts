@@ -40,7 +40,7 @@ export class GovtViewProjectsPage {
     console.log('ionViewDidLoad GovtViewProjectsPage');
   }
 
-  async ionViewWillEnter(){
+  async init(){
     this.selected = "present";
     this.contents = "Present";
     this.projects = [];
@@ -60,24 +60,33 @@ export class GovtViewProjectsPage {
 		var temp = auth.currentUser;
 		var temp_email = temp.email;
 		let govt = temp_email.split("@")[0];
-    
     await database.ref('tender/').once('value', function(snapshot) {
         temp_tenders = snapshot.val();
     })
     .then(()=>{
-      temp_tenders.forEach(element => {
-        if( element["govt"]== govt && element["status"]==0){
-          this.futureP.push(element);
-        } else if(element["govt"]== govt && element["status"]==1){
-          this.presentP.push(element);
-        } else {
-          this.pastP.push(element);
+      console.log(temp_tenders)
+      Object.keys(temp_tenders).forEach(key => {
+        console.log(key)
+        var tender_id = key;
+        if(temp_tenders[key]["govt"] == govt && temp_tenders[key]["status"]==2){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.pastP.push(temp_tenders[key]);
+        } else if(temp_tenders[key]["govt"] == govt && temp_tenders[key]["status"]==1){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.presentP.push(temp_tenders[key]);
+        } else if(temp_tenders[key]["govt"] == govt && temp_tenders[key]["status"]==0){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.futureP.push(temp_tenders[key]);
         }
       });
     }).then(()=>{
       if(this.loading)
         this.loading.dismiss();
     });
+  }
+  async ionViewWillEnter(){
+    await this.init();
+    // await dats
   }
   
   pastProjects(){
@@ -100,6 +109,13 @@ export class GovtViewProjectsPage {
 
   showProgress(){
 
+  }
+
+  async endTask(govt,id){
+    const database = this.firedata.database;
+    await database.ref('tender/').child(id).child('status').set(2);
+    await database.ref('tender/').child(id).child('enddate').set(new Date().toDateString());
+    this.init();
   }
 
 }
