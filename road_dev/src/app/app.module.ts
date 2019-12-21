@@ -39,8 +39,8 @@ import { CreateTenderPage } from '../pages/create-tender/create-tender'
 import { GovtVerifyPage } from '../pages/govt-verify/govt-verify'
 import { GovtPendingPage } from '../pages/govt-pending/govt-pending'
 import { PotholeDetectorProvider } from '../providers/pothole-detector/pothole-detector';
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
-import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
+import { DeviceMotion } from '@ionic-native/device-motion';
+import { Gyroscope} from '@ionic-native/gyroscope';
 
 
 export const firebaseConfig = {
