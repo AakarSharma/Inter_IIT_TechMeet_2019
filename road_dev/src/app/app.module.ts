@@ -34,7 +34,10 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { GovtContractorsDetailsPage } from '../pages/govt-contractors-details/govt-contractors-details';
 import { GovtTendersDetailsPage } from '../pages/govt-tenders-details/govt-tenders-details';
 import { ContractorProgressPage } from '../pages/contractor-progress/contractor-progress';
-
+import { CreateContractorPage } from '../pages/create-contractor/create-contractor'
+import { CreateTenderPage } from '../pages/create-tender/create-tender'
+import { GovtVerifyPage } from '../pages/govt-verify/govt-verify'
+import { GovtPendingPage } from '../pages/govt-pending/govt-pending'
 
 export const firebaseConfig = {
   apiKey: "AIzaSyACWvceKT1lF9iD6i2ZDFHax34cHkco2ic",
@@ -69,7 +72,11 @@ export const firebaseConfig = {
     UserProfilePage,
     GovtContractorsDetailsPage,
     GovtTendersDetailsPage,
-    ContractorProgressPage
+    ContractorProgressPage,
+    CreateContractorPage,
+    CreateTenderPage,
+    GovtVerifyPage,
+    GovtPendingPage
   ],
   imports: [
     BrowserModule,
@@ -104,6 +111,11 @@ export const firebaseConfig = {
     GovtContractorsDetailsPage,
     GovtTendersDetailsPage,
     ContractorProgressPage,
+    ContractorProgressPage,
+    CreateContractorPage,
+    CreateTenderPage,
+    GovtVerifyPage,
+    GovtPendingPage
   ],
   providers: [
     StatusBar,

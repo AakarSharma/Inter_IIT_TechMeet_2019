@@ -15,13 +15,11 @@
 <ion-content>
   <ion-slides #slider effect="fade" (ionSlideWillChange)="onSlideChanged()">
     <ion-slide *ngFor="let slide of slides"
-               class="swiper-no-swiping"
-               [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
-      <h2>{{slide.title}}</h2>
+               class="swiper-no-swiping">
       <!-- Card -->
       <ion-card>
         <ion-card-header>
-          Pie Chart
+          {{slide.title}}
         </ion-card-header>
         <ion-card-content>
           <canvas #pieCanvas></canvas>
