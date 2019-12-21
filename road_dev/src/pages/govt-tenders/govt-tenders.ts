@@ -50,6 +50,10 @@ export class GovtTendersPage {
   
   
   createTender(){
+    // Pass date also
+    var d = new Date().toDateString();
+
+
   //   const animationsOptions = {
   //     animation: 'md-transition',
   //     duration: 1000
