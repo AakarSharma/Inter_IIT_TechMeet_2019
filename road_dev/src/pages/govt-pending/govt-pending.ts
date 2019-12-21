@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GovtVerifyPage } from '../govt-verify/govt-verify'
 
 /**
  * Generated class for the GovtPendingPage page.
@@ -40,8 +41,8 @@ export class GovtPendingPage {
     console.log('ionViewDidLoad GovtPendingPage');
   }
 
-  getDirections(card) {
-    
+  getTender(card) {
+    this.navCtrl.push(GovtVerifyPage);
   }
 
 }

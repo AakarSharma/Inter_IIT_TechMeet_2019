@@ -15,11 +15,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class GovtVerifyPage {
 
+  job = {
+		job1: '',
+		job2: '',
+		job3: '',
+		job4: '',
+		job5: ''
+  };
+  
+  left = {
+    job1: '',
+		job2: '',
+		job3: '',
+		job4: '',
+		job5: ''
+  };
+
+  tenderId: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.tenderId = navParams.get("id");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GovtVerifyPage');
+  }
+
+  verify() {
+    
   }
 
 }

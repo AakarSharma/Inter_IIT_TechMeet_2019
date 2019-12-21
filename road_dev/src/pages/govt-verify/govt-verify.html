@@ -5,11 +5,49 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>govt_verify</ion-title>
+  <ion-navbar text-center color="danger">
+    <ion-title text-center color="danger">Verify </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding parallax-header no-bounce class="bg-modal">
+
+  <div class="main-content" text-wrap text-center>
+      <hr>
+
+    <ion-list no-lines class="descp">
+            
+      <ion-item >
+          <div><label class="fgh">Sub-Grade :</label><input type="number" value="{{job.job1}}" [disabled]="false"  class="def" id="email"></div>
+          <span>{{left.job1}} left.</span>
+      </ion-item>
+      
+      <ion-item>
+          <div><label class="fgh">GSB :</label><input type="number" value="{{job.job2}}" [disabled]="false"  class="def" id="mobile"></div>
+          <span>{{left.job2}} left.</span>
+      </ion-item>
+      
+      <ion-item>
+          <div><label class="fgh">WMM :</label><input type="number" value="{{job.job3}}" [disabled]="false"  class="def" id="address"></div>
+          <span>{{left.job3}} left.</span>
+      </ion-item>
+      
+      <ion-item >
+          <div><label class="fgh">DBM :</label><input type="number" value="{{job.job4}}" [disabled]=false class="def"></div>
+          <span>{{left.job4}} left.</span>
+      </ion-item>
+      
+      <ion-item>
+          <div><label class="fgh">AC/BC :</label><input type="number" value="{{job.job5}}" [disabled]=false class="def"></div>
+          <span>{{left.job5}} left.</span>
+      </ion-item>
+
+    </ion-list>
+
+    <div text-center>
+      <button ion-button block (click)="verify()">Verify</button>
+    </div>
+
+  </div>
 
 </ion-content>
