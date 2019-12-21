@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoadingController } from 'ionic-angular';
+import { ContractorProgressPage } from '../contractor-progress/contractor-progress';
 /**
  * Generated class for the GovtViewProjectsPage page.
  *
@@ -109,8 +110,8 @@ export class GovtViewProjectsPage {
     });
   }
 
-  showProgress(){
-
+  showProgress(id){
+    this.navCtrl.push(ContractorProgressPage,{"id":id});
   }
 
   async endTask(govt,id){
