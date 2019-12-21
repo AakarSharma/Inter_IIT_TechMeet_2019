@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoadingController } from 'ionic-angular';
+import { ContractorProgressPage } from '../contractor-progress/contractor-progress';
 
 /**
  * Generated class for the UserViewProjectsPage page.
@@ -65,14 +66,18 @@ export class UserViewProjectsPage {
     })
     .then(()=>{
       if(temp_tenders!=undefined && temp_tenders!=null){
-        temp_tenders.forEach(element => {
-          if(element["status"]==0){
-            this.futureP.push(element);
-          } else if(element["status"]==1){
-            this.presentP.push(element);
-          } else {
-            this.pastP.push(element);
-          }
+        Object.keys(temp_tenders).forEach(key => {
+          var tender_id = key;
+        if(temp_tenders[key]["status"]==2){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.pastP.push(temp_tenders[key]);
+        } else if(temp_tenders[key]["status"]==1){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.presentP.push(temp_tenders[key]);
+        } else if(temp_tenders[key]["status"]==0){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.futureP.push(temp_tenders[key]);
+        }
         });
       }
     }).then(()=>{
@@ -102,8 +107,8 @@ export class UserViewProjectsPage {
     });
   }
 
-  showProgress(){
-
+  showProgress(id){
+    this.navCtrl.push(ContractorProgressPage,{"id":id});
   }
 }
 

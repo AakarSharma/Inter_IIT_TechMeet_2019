@@ -31,7 +31,7 @@
         <ion-label>Predicted Completion Date: {{data.expectedenddate}}</ion-label>
       </ion-item>
       <ion-item>
-      <button ion-button round (click)="showProgress()" *ngIf="selected=='present'">Progress</button>
+      <button ion-button round (click)="showProgress(data.id)" *ngIf="selected=='present'">Progress</button>
       </ion-item>
     </ion-card-content>
   </ion-card>
