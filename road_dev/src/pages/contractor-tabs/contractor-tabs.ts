@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { ContractorProfilePage } from './../contractor-profile/contractor-profile';
 import { ContractorProgressPage } from './../contractor-progress/contractor-progress';
 
-import { ContactPage } from '../contact/contact';
-
 @Component({
   templateUrl: 'contractor-tabs.html'
 })
