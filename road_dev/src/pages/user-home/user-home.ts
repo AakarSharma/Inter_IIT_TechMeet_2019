@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { PotholeDetectorProvider } from '../../providers/pothole-detector/pothole-detector'
 /**
  * Generated class for the UserHomePage page.
  *
@@ -26,8 +27,9 @@ export class UserHomePage {
   map: any;
   potholes: any;
 
-  constructor(private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
+  constructor(private potholeDetectorProvider:PotholeDetectorProvider, private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
     this.potholes = [];
+    this.potholeDetectorProvider.detect();
   }
 
   async getLocation() {

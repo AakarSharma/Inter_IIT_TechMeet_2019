@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 import { Platform } from 'ionic-angular';
+import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
+import { Observable, merge } from 'rxjs';
 
 /*
   Generated class for the PotholeDetectorProvider provider.
@@ -12,17 +14,26 @@ import { Platform } from 'ionic-angular';
 @Injectable()
 export class PotholeDetectorProvider {
 
-  constructor(public deviceMotion: DeviceMotion, public platform: Platform) {
+  constructor(private gyroscope: Gyroscope, private deviceMotion: DeviceMotion, private platform: Platform) {
   }
 
-  getAcceleration() {
+  detect() {
     this.platform.ready().then(() => {
       let options = {
-        frequency: 10
+        frequency: 100
       }
-      var subscription = this.deviceMotion.watchAcceleration(options).subscribe((acceleration: DeviceMotionAccelerationData) => {
-        console.log(acceleration.x, acceleration.y, acceleration.z);
+
+      let sensors = merge(
+        this.deviceMotion.watchAcceleration(options),
+        this.gyroscope.watch(options)
+      )
+
+      sensors.subscribe((sensorsData) => {
+        for(let key in sensorsData){
+          console.log(sensorsData[key]);
+        }
       });
     });
+
   }
 }

@@ -20,30 +20,44 @@ export class ContractorProgressPage {
   ranks: number[][];
 
   @ViewChild('slider') slider: Slides;
+  @ViewChild('barCanvas') barCanvas;
+  @ViewChild('doughnutCanvas') doughnutCanvas;
+  @ViewChild('halfDoughnutCanvas') halfDoughnutCanvas;
+  @ViewChild('lineCanvas') lineCanvas;
+  @ViewChild('radarCanvas') radarCanvas;
+  @ViewChild('polarCanvas') polarCanvas;
+  @ViewChild('pieCanvas') pieCanvas;
+  @ViewChild('bubbleCanvas') bubbleCanvas;
+  @ViewChild('mixedCanvas') mixedCanvas;
+
+  barChart: any;
+  doughnutChart: any;
+  halfDoughnutChart: any;
+  lineChart: any;
+  polarAreaChart: any;
+  pieChart: any;
+  bubbleChart: any;
+  mixedChart: any;
 
   slides = [
     {
-      title: 'Dream\'s Adventure',
-      imageUrl: 'assets/imgs/wishlist-1.jpg',
-      songs: 2,
+      title: 'SubGrade',
       private: false
     },
     {
-      title: 'For the Weekend',
-      imageUrl: 'assets/imgs/wishlist-2.jpg',
-      songs: 4,
+      title: 'GSB',
       private: false
     },
     {
-      title: 'Family Time',
-      imageUrl: 'assets/imgs/wishlist-3.jpg',
-      songs: 5,
+      title: 'WMM',
       private: true
     },
     {
-      title: 'My Trip',
-      imageUrl: 'assets/imgs/wishlist-4.jpg',
-      songs: 12,
+      title: 'DBM',
+      private: true
+    },
+    {
+      title: 'AC / BC',
       private: true
     }
   ];
@@ -53,6 +67,12 @@ export class ContractorProgressPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContractorProgressPage');
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.pieChart = this.getPieChart();
+    }, 350);
   }
 
   currentIndex = 0;
@@ -68,6 +88,29 @@ export class ContractorProgressPage {
   onSlideChanged() {
     this.currentIndex = this.slider.getActiveIndex();
     console.log('Slide changed! Current index is', this.currentIndex);
+  }
+
+  getChart(context, chartType, data, options?) {
+    return new Chart(context, {
+      data,
+      options,
+      type: chartType,
+    });
+  }
+
+  getPieChart() {
+    const data = {
+      labels: ['Not Done', 'Not Verfied', 'Verified'],
+      datasets: [
+        {
+          data: [300, 50, 100],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+        }]
+    };
+
+    return this.getChart(this.pieCanvas.nativeElement, 'pie', data);
+
   }
 
 }
