@@ -64,15 +64,17 @@ export class UserViewProjectsPage {
         temp_tenders = snapshot.val();
     })
     .then(()=>{
-      temp_tenders.forEach(element => {
-        if(element["status"]==0){
-          this.futureP.push(element);
-        } else if(element["status"]==1){
-          this.presentP.push(element);
-        } else {
-          this.pastP.push(element);
-        }
-      });
+      if(temp_tenders!=undefined && temp_tenders!=null){
+        temp_tenders.forEach(element => {
+          if(element["status"]==0){
+            this.futureP.push(element);
+          } else if(element["status"]==1){
+            this.presentP.push(element);
+          } else {
+            this.pastP.push(element);
+          }
+        });
+      }
     }).then(()=>{
       if(this.loading)
         this.loading.dismiss();

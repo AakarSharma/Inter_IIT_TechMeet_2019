@@ -37,8 +37,17 @@ export class ContractorProgressPage {
     database.ref('tender/').child("1").child('progress').once('value').then((snapshot) => {
       lol = snapshot.val();
     }).then(() => {
-      this.build = lol["build"];
-      this.validate = lol["validate"];
+      if (lol.hasOwnProperty('build')) {
+        this.build = lol["build"];
+      }else{
+        this.build = "[]";
+      }
+
+      if (lol.hasOwnProperty('validate')) {
+        this.validate = lol["validate"];
+      }else{
+        this.validate = "[]";
+      }
 
       database.ref('tender/').child("1").child('length_road').once('value').then((snapshot) => {
         road_length = snapshot.val();
@@ -47,7 +56,7 @@ export class ContractorProgressPage {
           p.setup = () => {
             p.createCanvas(window.innerWidth, window.innerHeight);
             p.background(240);
-            p.strokeWeight(7);
+            p.strokeWeight(12);
 
             p.stroke(255, 0, 0);
             p.line(20, 50, window.innerWidth - 20, 50);

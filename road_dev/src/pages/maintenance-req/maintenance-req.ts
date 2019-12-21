@@ -5,6 +5,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular';
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -32,7 +35,10 @@ export class MaintenanceReqPage {
               public navCtrl: NavController,
               private nativeGeocoder: NativeGeocoder,
               public navParams: NavParams,
-              public geo:Geolocation) {
+              public geo:Geolocation,
+              private fireauth: AngularFireAuth,
+              private firedata: AngularFireDatabase ,
+              public loadingCtrl: LoadingController) {
     
   }
 
@@ -100,10 +106,43 @@ export class MaintenanceReqPage {
   }
 
   async sendDataToFirebase(){
-    this.getLocation().then(()=>{
-      this.date = (new Date()).toDateString();
-      
-    });
+    const database = this.firedata.database;
+    const auth =  this.fireauth.auth;
+    var temp1 = auth.currentUser;
+    var temp_email = temp1.email;
+    var user = temp_email.split("@")[0];
+        
+    var temp;
+    await database.ref("affected_areas/").child("247667").once("value",function(snapshot){
+      temp = snapshot.val();
+    }).then(()=>{
+      var tt = 1;
+      if(temp!=undefined && temp!=null)
+      {
+        temp= Object.keys(temp);
+        tt = temp[temp.length-1]+1;
+      }
+        
+        var dd = (new Date()).toDateString();
+        
+        
+        var uploadTemp ={
+          "date":dd,
+          "has_photo":false,
+          "lan":this.lat,
+          "lon":this.lng,
+          "photo":"", 
+          "pincode":"247667",
+          "roadname":this.road,
+          "severity":this.severity,
+          "user": user,
+          "confidence":0
+        };
+        database.ref("affected_areas/").child("247667").child(tt.toString()).set(uploadTemp);
+
+      });
+    
+    
   }
 
   async uploadHandler() {
@@ -114,7 +153,7 @@ export class MaintenanceReqPage {
         {
           text: 'Camera',
           handler: () => {
-            this.uploadHandlerCamera();
+            // this.uploadHandlerCamera();
             this.sendDataToFirebase();
            }
         }
