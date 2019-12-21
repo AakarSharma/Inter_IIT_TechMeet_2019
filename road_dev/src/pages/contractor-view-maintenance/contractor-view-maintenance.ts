@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { LoadingController } from 'ionic-angular';
+  import { AngularFireDatabase } from '@angular/fire/database';
+  import { AngularFireAuth } from '@angular/fire/auth';
+  import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the ContractorViewMaintenancePage page.
@@ -46,21 +46,24 @@ export class ContractorViewMaintenancePage {
       temp_tenders = snapshot.val();
     })
     .then(()=>{
-      var keysTenders = Object.keys(temp_tenders);
-      for( let x of keysTenders){
-        var x2 = Object.keys(temp_tenders[x]);
-        for ( let ele of x2){
-          var rt = temp_tenders[x][ele];
-          rt["year"]=x;
-          rt["day"]=ele;
-          console.log(temp_tenders[x][ele]);
-          this.maintenance.push(rt);
+      if(temp_tenders!=undefined && temp_tenders!=null)
+        {
+          var keysTenders = Object.keys(temp_tenders);
+          for( let x of keysTenders){
+            var x2 = Object.keys(temp_tenders[x]);
+            for ( let ele of x2){
+              var rt = temp_tenders[x][ele];
+              rt["year"]=x;
+              rt["day"]=ele;
+              console.log(temp_tenders[x][ele]);
+              this.maintenance.push(rt);
+            }
+          }
         }
-      }
-      }).then(()=>{
-      if(this.loading)
-        this.loading.dismiss();
-    });
+        }).then(()=>{
+        if(this.loading)
+          this.loading.dismiss();
+       });
   }
 
   async markDone(year,day){
