@@ -54,11 +54,16 @@ export class ContractorHomePage {
         temp_tenders = snapshot.val();
     })
     .then(()=>{
-      temp_tenders.forEach(element => {
-        if(element["contractor"] == contractor && element["status"]==2){
-          this.pastP.push(element);
-        } else if(element["contractor"] == contractor && element["status"]==1){
-          this.presentP.push(element);
+      console.log(temp_tenders)
+      Object.keys(temp_tenders).forEach(key => {
+        console.log(key)
+        var tender_id = key;
+        if(temp_tenders[key]["contractor"] == contractor && temp_tenders[key]["status"]==2){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.pastP.push(temp_tenders[key]);
+        } else if(temp_tenders[key]["contractor"] == contractor && temp_tenders[key]["status"]==1){
+          temp_tenders[tender_id]["id"]=tender_id;
+          this.presentP.push(temp_tenders[key]);
         }
       });
     }).then(()=>{
@@ -80,7 +85,7 @@ export class ContractorHomePage {
     this.projects = this.presentP;
   }
 
-  navToSubmitReport(){
-    this.navCtrl.push(SubmitReportPage);
+  navToSubmitReport(id){
+    this.navCtrl.push(SubmitReportPage,{"id":id});
   }
 }

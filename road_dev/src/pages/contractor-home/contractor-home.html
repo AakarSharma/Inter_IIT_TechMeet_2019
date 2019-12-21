@@ -30,7 +30,7 @@
         <ion-label>Predicted Completion Date: {{data.predicteddate}}</ion-label>
       </ion-item>
       <ion-item>
-        <button ion-button *ngIf="tense=='present'" (click)="navToSubmitReport()"> Submit Report</button>
+        <button ion-button *ngIf="tense=='present'" (click)="navToSubmitReport(data.id)"> Submit Report</button>
       </ion-item>
     </ion-card-content>
   </ion-card>
