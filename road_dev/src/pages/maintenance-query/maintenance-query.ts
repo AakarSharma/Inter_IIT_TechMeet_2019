@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 
 /**
  * Generated class for the MaintenanceQueryPage page.
