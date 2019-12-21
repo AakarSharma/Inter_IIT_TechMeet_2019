@@ -23,9 +23,10 @@ export class ContractorProgressPage {
 
   build: any;
   validate: any;
+  id: any;
 
   constructor(private fireauth: AngularFireAuth, private firedata: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
-
+    this.id = navParams.get("id")
   }
 
   ionViewDidLoad() {
@@ -34,7 +35,7 @@ export class ContractorProgressPage {
     var lol;
     let road_length = 1;
 
-    database.ref('tender/').child("1").child('progress').once('value').then((snapshot) => {
+    database.ref('tender/').child(this.id).child('progress').once('value').then((snapshot) => {
       lol = snapshot.val();
     }).then(() => {
       if (lol.hasOwnProperty('build')) {
@@ -49,7 +50,7 @@ export class ContractorProgressPage {
         this.validate = "[]";
       }
 
-      database.ref('tender/').child("1").child('length_road').once('value').then((snapshot) => {
+      database.ref('tender/').child(this.id).child('length_road').once('value').then((snapshot) => {
         road_length = snapshot.val();
 
         let temp = p => {
